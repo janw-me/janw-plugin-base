@@ -33,4 +33,4 @@ If needed update in
 
 # create plugin zip
 
-todo
+todo, check `.gitattributes` for release zip?
