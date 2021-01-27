@@ -23,6 +23,8 @@ Before starting replace:
 	- namespace
 	- package
 
+- clear this file.
+
 ## By default php 7.2
 If needed update in
 
