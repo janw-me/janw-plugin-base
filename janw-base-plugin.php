@@ -30,7 +30,7 @@ require_once JANW_BASE_PLUGIN_APP_DIR . 'class-admin.php';
  */
 
 // Plugin activation.
-register_activation_hook( __FILE__, array( '\Janw\Base_Plugin\App\Activation', 'activate' ) );
+register_activation_hook( __FILE__, array( '\Janw\Base_Plugin\App\Admin', 'activate' ) );
 
 // Adds a link to the settings page on the plugin overview.
 add_filter( 'plugin_action_links_' . JANW_BASE_PLUGIN_NAME, array( '\Janw\Base_Plugin\App\Admin', 'settings_link' ) );

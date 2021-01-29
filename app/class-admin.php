@@ -23,5 +23,16 @@ class Admin {
 
 		return $links;
 	}
+
+	/**
+	 * Run on activation.
+	 *
+	 * @param string $plugin Path to the plugin file relative to the plugins directory.
+	 * @param bool   $network_wide Whether to enable the plugin for all sites in the network
+	 *                               or just the current site. Multisite only. Default false.
+	 */
+	public static function activate( $plugin, $network_wide = false ) {
+		// do stuff.
+	}
 }
 
