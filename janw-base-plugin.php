@@ -21,9 +21,17 @@ define( 'JANW_BASE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'JANW_BASE_PLUGIN_NAME', basename( __DIR__ ) . DIRECTORY_SEPARATOR . basename( __FILE__ ) );
 
 /**
- * Includes.
+ * Autoload classes.
  */
-require_once JANW_BASE_PLUGIN_APP_DIR . 'class-admin.php';
+spl_autoload_register( function ( $class_name ) { //phpcs:ignore PEAR.Functions.FunctionCallSignature
+	if ( strpos( $class_name, __NAMESPACE__ . '\App' ) !== 0 ) {
+		return; // Not in the plugin namespace, don't check.
+	}
+	$bare_class = str_replace( __NAMESPACE__ . '\App\\', '', $class_name );
+	$bare_class = str_replace( '_', '-', $bare_class );
+
+	require_once JANW_BASE_PLUGIN_APP_DIR . 'class-' . strtolower( $bare_class ) . '.php';
+} );//phpcs:ignore PEAR.Functions.FunctionCallSignature
 
 /**
  * Hook everything.
