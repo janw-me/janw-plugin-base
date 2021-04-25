@@ -1,13 +1,15 @@
 <?php
 /**
- * Plugin Name:     Janw Base Plugin
- * Plugin URI:      PLUGIN SITE HERE
- * Description:     PLUGIN DESCRIPTION HERE
- * Author:          janw.oostendorp
- * Author URI:      https://janw.me
- * Text Domain:     janw-base-plugin
- * Domain Path:     /languages
- * Version:         0.1.0
+ * Plugin Name:       Janw Base Plugin
+ * Plugin URI:        PLUGIN SITE HERE
+ * Description:       PLUGIN DESCRIPTION HERE
+ * Author:            janw.oostendorp
+ * Author URI:        https://janw.me
+ * Text Domain:       janw-base-plugin
+ * Domain Path:       /languages
+ * Requires at least: 5.0
+ * Requires PHP:      7.1
+ * Version:           0.1.0
  *
  * @package         Janw\Base_Plugin
  */
