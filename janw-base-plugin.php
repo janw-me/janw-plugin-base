@@ -8,7 +8,7 @@
  * Text Domain:       janw-base-plugin
  * Domain Path:       /languages
  * Requires at least: 5.0
- * Requires PHP:      7.1
+ * Requires PHP:      7.2
  * Version:           0.1.0
  *
  * @package         Janw\Base_Plugin
