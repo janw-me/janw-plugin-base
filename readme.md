@@ -31,6 +31,7 @@ If needed update in
 - `janw-base-plugin`
 - `composer.json`
 - `.phpcs.xml.dist`
+- `readme.txt`
 
 
 # create plugin zip
