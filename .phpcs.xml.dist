@@ -32,7 +32,7 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<!-- Value: replace the function, class, and variable prefixes used. Separate multiple prefixes with a comma. -->
-			<property name="prefixes" type="array" value="janw-base-plugin,janw_base_plugin,jwb"/>
+			<property name="prefixes" type="array" value="janw_base_plugin,janw_base_plugin,jwb"/>
 		</properties>
 	</rule>
 	<rule ref="WordPress.WP.I18n">

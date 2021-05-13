@@ -18,21 +18,25 @@ namespace Janw\Base_Plugin;
 
 define( 'JANW_BASE_PLUGIN_VERSION', '0.1.0' );
 define( 'JANW_BASE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'JANW_BASE_PLUGIN_APP_DIR', JANW_BASE_PLUGIN_DIR . 'app' . DIRECTORY_SEPARATOR );
 define( 'JANW_BASE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'JANW_BASE_PLUGIN_NAME', basename( __DIR__ ) . DIRECTORY_SEPARATOR . basename( __FILE__ ) );
 
 /**
  * Autoload classes.
  */
-spl_autoload_register( function ( $class_name ) { //phpcs:ignore PEAR.Functions.FunctionCallSignature
-	if ( strpos( $class_name, __NAMESPACE__ . '\App' ) !== 0 ) {
+spl_autoload_register( function ( $full_class_name ) { //phpcs:ignore PEAR.Functions.FunctionCallSignature
+	if ( strpos( $full_class_name, __NAMESPACE__ . '\App' ) !== 0 ) {
 		return; // Not in the plugin namespace, don't check.
 	}
-	$bare_class = str_replace( __NAMESPACE__ . '\App\\', '', $class_name );
-	$bare_class = str_replace( '_', '-', $bare_class );
 
-	require_once JANW_BASE_PLUGIN_APP_DIR . 'class-' . strtolower( $bare_class ) . '.php';
+	$full_class_name = strtolower( str_replace( '_', '-', $full_class_name ) );
+	$class_parts     = explode( '\\', $full_class_name );
+	unset( $class_parts[0] ); // Unset the __NAMESPACE__.
+
+	$class_file    = 'class-' . array_pop( $class_parts ) . '.php';
+	$class_parts[] = $class_file;
+
+	require_once JANW_BASE_PLUGIN_DIR . implode( DIRECTORY_SEPARATOR, $class_parts );
 } );//phpcs:ignore PEAR.Functions.FunctionCallSignature
 
 /**
