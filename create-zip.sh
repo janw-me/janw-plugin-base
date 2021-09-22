@@ -1,7 +1,10 @@
 #!/bin/env bash
 
 #####################################
-#  Usage.
+#  Create a zip which can be installed via the dashboard.
+#
+#  ###########
+#  # Usage.
 #
 # ./create-zip.sh
 #       Zip all files in the plugin directory in a zip in the plugin directory
@@ -25,7 +28,7 @@ COLOR_GREEN='\033[0;32m'
 COLOR_ORANGE='\033[0;33m'
 COLOR_OFF='\033[0m'
 
-# Zip details degaults.
+# Zip details defaults.
 ZIP_FILE_NAME="${PLUGIN_SLUG}.zip"
 PLUGIN_ZIP_PATH="${PLUGIN_DIR}/${ZIP_FILE_NAME}"
 if [[ ! -z "${1}" ]]; then
@@ -56,25 +59,45 @@ if [[ -f "${PLUGIN_ZIP_PATH}" ]]; then
 	printf "Removing existing ${COLOR_ORANGE}${PLUGIN_ZIP_PATH}${COLOR_OFF}\n"
 fi
 
-# Go into the plugin DIR, only way to set the root for ZIP
-cd ${PLUGIN_DIR}
+# Build
+if [[ -f ./composer.lock ]]; then
+	cd ${PLUGIN_DIR}/
+	printf "Installing ${COLOR_ORANGE}composer${COLOR_OFF} packages (no-dev)\n"
+	composer install --quiet --no-dev
+fi
+if [[ -f ./package.json ]]; then
+	cd ${PLUGIN_DIR}/
+	printf "Building ${COLOR_ORANGE}npm${COLOR_OFF} packages\n"
+	npm install
+	npm run build
+fi
+
+# Go one dir above the plugin DIR, only way to set the correct root for ZIP
+cd ${PLUGIN_DIR}/../
 # Finally zip it up.
-zip -r "${PLUGIN_ZIP_PATH}" . -x \
-./.wordpress.org \
-./node_modules\* \
-./.git\* \
-./vendor\* \
-./package.json \
-./package-lock.json \
-./composer.json \
-./composer.lock \
-./.distignore* \
-./.editorconfig* \
-./.gitignore* \
-./.idea\* \
-./.phpcs.xml.dist \
-./README.md \
-./readme.md \
-./create-zip.sh \
-./docs\* \
-./.wordpress-org\* \
+zip -r "${PLUGIN_ZIP_PATH}" ./${PLUGIN_SLUG} -x \
+${PLUGIN_SLUG}/.wordpress.org \
+${PLUGIN_SLUG}/node_modules\* \
+${PLUGIN_SLUG}/.git\* \
+${PLUGIN_SLUG}/vendor\* \
+${PLUGIN_SLUG}/package.json \
+${PLUGIN_SLUG}/package-lock.json \
+${PLUGIN_SLUG}/composer.json \
+${PLUGIN_SLUG}/composer.lock \
+${PLUGIN_SLUG}/.distignore* \
+${PLUGIN_SLUG}/.editorconfig* \
+${PLUGIN_SLUG}/.gitignore* \
+${PLUGIN_SLUG}/.idea\* \
+${PLUGIN_SLUG}/.phpcs.xml.dist \
+${PLUGIN_SLUG}/README.md \
+${PLUGIN_SLUG}/readme.md \
+${PLUGIN_SLUG}/create-zip.sh \
+${PLUGIN_SLUG}/docs\* \
+${PLUGIN_SLUG}/.wordpress-org\* \
+
+# restore composer to development state.
+if [[ -f ./composer.lock ]]; then
+	cd ${PLUGIN_DIR}/
+	printf "restoring ${COLOR_ORANGE}composer${COLOR_OFF} development packages\n"
+	composer install --quiet --dev
+fi
