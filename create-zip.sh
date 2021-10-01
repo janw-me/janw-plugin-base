@@ -80,7 +80,7 @@ if [[ ! -f ${PLUGIN_PHP_PATH} ]]; then
 	exit 1; # error
 fi
 VERSION=$(grep  'Version:.*' ${PLUGIN_PHP_PATH} | sed -E "s/.* ([.0-9])/\\1/")
-if [[ $ZIP_FILE_APPEND_VERSION ]]; then
+if [[ $ZIP_FILE_APPEND_VERSION = true ]]; then
 	#new zip name.
 	ZIP_FILE_NAME="${ZIP_FILE_NAME%.zip}-${VERSION}.zip"
 fi
