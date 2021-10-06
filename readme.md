@@ -14,14 +14,13 @@ Before starting replace:
 	- prefixes
 	- text_domain
 
-- `janw-base-plugin.php`
-	- rename (obvious)
-	- the headers
-	- namespace
-	- Constants
-- `app`
-	- namespace
-	- package
+- `janw-plugin-base.php`
+    - rename (obvious)
+    - the headers
+
+- Plugin wide seach-replace
+	- Constants: _JANW_BASE_PLUGIN_
+	- Namespace & Package: _Janw\Base_Plugin_
 
 - clear this file.
 
@@ -36,4 +35,6 @@ If needed update in
 
 # create plugin zip
 
-todo, check `.gitattributes` for release zip?
+`./create-zip.sh`
+
+Run `./create-zip.sh -h` for detailed options.

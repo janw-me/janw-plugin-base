@@ -22,21 +22,30 @@ define( 'JANW_BASE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'JANW_BASE_PLUGIN_NAME', basename( __DIR__ ) . DIRECTORY_SEPARATOR . basename( __FILE__ ) );
 
 /**
- * Autoload classes.
+ * Autoload internal classes.
  */
 spl_autoload_register( function ( $full_class_name ) { //phpcs:ignore PEAR.Functions.FunctionCallSignature
 	if ( strpos( $full_class_name, __NAMESPACE__ . '\App' ) !== 0 ) {
 		return; // Not in the plugin namespace, don't check.
 	}
+	if ( strpos( $full_class_name, __NAMESPACE__ . '\App\Vendor' ) === 0 ) {
+		return; // 3rd party, prefixed class.
+	}
 
-	$full_class_name = strtolower( str_replace( '_', '-', $full_class_name ) );
-	$class_parts     = explode( '\\', $full_class_name );
-	unset( $class_parts[0] ); // Unset the __NAMESPACE__.
+	$stripped_class = str_replace(__NAMESPACE__, '', $full_class_name);
+	$stripped_class = strtolower( str_replace( '_', '-', $stripped_class ) );
+	$class_parts     = explode( '\\', $stripped_class );
 
 	$class_file    = 'class-' . array_pop( $class_parts ) . '.php';
 	$class_parts[] = $class_file;
 
-	require_once JANW_BASE_PLUGIN_DIR . implode( DIRECTORY_SEPARATOR, $class_parts );
+	$full_path = JANW_BASE_PLUGIN_DIR . implode( DIRECTORY_SEPARATOR, $class_parts );
+	if ( ! file_exists( $full_path ) ) {
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		wp_die( new \WP_Error( 'unknown_class', "<b>Unknown class</b><br/>class: <code>{$full_class_name}</code><br/> path: <code>{$full_path}</code>" ) );
+	}
+
+	require_once $full_path;
 } );//phpcs:ignore PEAR.Functions.FunctionCallSignature
 
 /**

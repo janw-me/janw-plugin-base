@@ -47,7 +47,7 @@ while test $# -gt 0; do
 		display_help_mssg
 		exit 0
 		;;
-    -o|-output)
+    -o|--output)
       shift
       if test $# -gt 0; then
       	if [[ "${1}" == *.zip ]]; then
@@ -114,24 +114,24 @@ printf  "Creating zip: ${COLOR_GREEN}${ZIP_FILE_NAME}${COLOR_OFF} in ${COLOR_GRE
 # Finally zip it up.
 zip -r "${PLUGIN_ZIP_PATH}" ./${PLUGIN_SLUG} -x \
 ${PLUGIN_SLUG}/${PLUGIN_SLUG}*.zip \
-${PLUGIN_SLUG}/.wordpress.org \
-${PLUGIN_SLUG}/node_modules\* \
-${PLUGIN_SLUG}/.git\* \
-${PLUGIN_SLUG}/vendor\* \
-${PLUGIN_SLUG}/package.json \
-${PLUGIN_SLUG}/package-lock.json \
-${PLUGIN_SLUG}/composer.json \
-${PLUGIN_SLUG}/composer.lock \
 ${PLUGIN_SLUG}/.distignore* \
 ${PLUGIN_SLUG}/.editorconfig* \
+${PLUGIN_SLUG}/.git\* \
 ${PLUGIN_SLUG}/.gitignore* \
 ${PLUGIN_SLUG}/.idea\* \
 ${PLUGIN_SLUG}/.phpcs.xml.dist \
+${PLUGIN_SLUG}/.wordpress-org\* \
+${PLUGIN_SLUG}/create-zip.sh \
+${PLUGIN_SLUG}/composer.json \
+${PLUGIN_SLUG}/composer.lock \
+${PLUGIN_SLUG}/docs\* \
+${PLUGIN_SLUG}/package.json \
+${PLUGIN_SLUG}/package-lock.json \
 ${PLUGIN_SLUG}/README.md \
 ${PLUGIN_SLUG}/readme.md \
-${PLUGIN_SLUG}/create-zip.sh \
-${PLUGIN_SLUG}/docs\* \
-${PLUGIN_SLUG}/.wordpress-org\* \
+${PLUGIN_SLUG}/scoper.inc.php \
+${PLUGIN_SLUG}/node_modules\* \
+${PLUGIN_SLUG}/vendor\* \
 
 # restore composer to development state.
 if [[ -f ${PLUGIN_DIR}/composer.lock ]]; then
