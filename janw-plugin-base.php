@@ -34,7 +34,7 @@ spl_autoload_register( function ( $full_class_name ) { //phpcs:ignore PEAR.Funct
 
 	$stripped_class = str_replace(__NAMESPACE__, '', $full_class_name);
 	$stripped_class = strtolower( str_replace( '_', '-', $stripped_class ) );
-	$class_parts     = explode( '\\', $stripped_class );
+	$class_parts    = array_filter( explode( '\\', $stripped_class ) );
 
 	$class_file    = 'class-' . array_pop( $class_parts ) . '.php';
 	$class_parts[] = $class_file;
