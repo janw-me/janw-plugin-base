@@ -129,6 +129,7 @@ ${PLUGIN_SLUG}/package.json \
 ${PLUGIN_SLUG}/package-lock.json \
 ${PLUGIN_SLUG}/README.md \
 ${PLUGIN_SLUG}/readme.md \
+${PLUGIN_SLUG}/scoper\* \
 ${PLUGIN_SLUG}/scoper.inc.php \
 ${PLUGIN_SLUG}/node_modules\* \
 ${PLUGIN_SLUG}/vendor\* \
