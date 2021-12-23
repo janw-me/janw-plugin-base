@@ -9,6 +9,14 @@
       "email": "webmaster@janw.me"
     }
   ],
+  "scripts": {
+    "phpcbf": "vendor/bin/phpcbf || true",
+    "phpcs": "vendor/bin/phpcs || true",
+    "ci": [
+      "@phpcbf",
+      "@phpcs"
+    ]
+  },
   "require": {
     "php": ">=7.2"
   },
