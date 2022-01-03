@@ -24,28 +24,22 @@ define( 'JANW_BASE_PLUGIN_NAME', basename( __DIR__ ) . DIRECTORY_SEPARATOR . bas
 /**
  * Autoload internal classes.
  */
-spl_autoload_register( function ( $full_class_name ) { //phpcs:ignore PEAR.Functions.FunctionCallSignature
-	if ( strpos( $full_class_name, __NAMESPACE__ . '\App' ) !== 0 ) {
+spl_autoload_register( function ( $class_name ) { //phpcs:ignore PEAR.Functions.FunctionCallSignature
+	if ( strpos( $class_name, __NAMESPACE__ . '\App' ) !== 0 ) {
 		return; // Not in the plugin namespace, don't check.
 	}
-	if ( strpos( $full_class_name, __NAMESPACE__ . '\App\Vendor' ) === 0 ) {
+	if ( strpos( $class_name, __NAMESPACE__ . '\App\Vendor' ) === 0 ) {
 		return; // 3rd party, prefixed class.
 	}
-
-	$stripped_class = str_replace(__NAMESPACE__, '', $full_class_name);
-	$stripped_class = strtolower( str_replace( '_', '-', $stripped_class ) );
-	$class_parts    = array_filter( explode( '\\', $stripped_class ) );
-
-	$class_file    = 'class-' . array_pop( $class_parts ) . '.php';
-	$class_parts[] = $class_file;
-
-	$full_path = JANW_BASE_PLUGIN_DIR . implode( DIRECTORY_SEPARATOR, $class_parts );
-	if ( ! file_exists( $full_path ) ) {
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		wp_die( new \WP_Error( 'unknown_class', "<b>Unknown class</b><br/>class: <code>{$full_class_name}</code><br/> path: <code>{$full_path}</code>" ) );
+	$transform  = str_replace( __NAMESPACE__ . '\\', '', $class_name );                   // Remove NAMESPACE and it's "/".
+	$transform  = str_replace( '_', '-', $transform );                                    // Replace "_" with "-".
+	$transform  = preg_replace( '%\\\\((?:.(?!\\\\))+$)%', '\class-$1.php', $transform ); // Set correct classname.
+	$transform  = str_replace( '\\', DIRECTORY_SEPARATOR, $transform );                   // Replace NS separator with dir separator.
+	$class_path = AFAS_FEED_PLUGIN_DIR . strtolower( $transform );
+	if ( ! file_exists( $class_path ) ) {
+		wp_die( "<h1>Can't find class</h1><pre><code>Class: {$class_name}<br/>Path:  {$class_path}</code></pre>" ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
-
-	require_once $full_path;
+	require_once $class_path;
 } );//phpcs:ignore PEAR.Functions.FunctionCallSignature
 
 /**
