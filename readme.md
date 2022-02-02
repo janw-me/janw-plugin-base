@@ -34,7 +34,11 @@ If needed update in
 
 
 # create plugin zip
+Bundled inside is a script to create a plugin zip file.
 
-`./create-zip.sh`
+ - `composer run createzip` Will create a zip named `plugin-slug.zip` in the plugin folder.
+ - `composer run createzip-in-downloads` Will create a zip named `plugin-slug-0.1.0.zip` in the Downloads folder.
+ - `composer run createzip-with-version` Will create a zip named `plugin-slug-0.1.0.zip` in the plugin folder.
 
-Run `./create-zip.sh -h` for detailed options.
+
+Run `composer run createzip -- -h` for a list of the arguments.

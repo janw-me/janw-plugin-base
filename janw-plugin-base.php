@@ -35,7 +35,7 @@ spl_autoload_register( function ( $class_name ) { //phpcs:ignore PEAR.Functions.
 	$transform  = str_replace( '_', '-', $transform );                                    // Replace "_" with "-".
 	$transform  = preg_replace( '%\\\\((?:.(?!\\\\))+$)%', '\class-$1.php', $transform ); // Set correct classname.
 	$transform  = str_replace( '\\', DIRECTORY_SEPARATOR, $transform );                   // Replace NS separator with dir separator.
-	$class_path = AFAS_FEED_PLUGIN_DIR . strtolower( $transform );
+	$class_path = JANW_BASE_PLUGIN_DIR . strtolower( $transform );
 	if ( ! file_exists( $class_path ) ) {
 		wp_die( "<h1>Can't find class</h1><pre><code>Class: {$class_name}<br/>Path:  {$class_path}</code></pre>" ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}

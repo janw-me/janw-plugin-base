@@ -1,0 +1,13 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+parameters:
+    level: 5
+    bootstrapFiles:
+    	- .phpstan.php
+    	- vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
+    paths:
+        - .
+    excludePaths:
+        - vendor
+        - node_modules
+        - .githubstar

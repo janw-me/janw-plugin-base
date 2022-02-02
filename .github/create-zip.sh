@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Directory to self https://stackoverflow.com/a/246128/933065
-PLUGIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+PLUGIN_DIR="$( cd "$( dirname $( dirname "${BASH_SOURCE[0]}" ) )" &> /dev/null && pwd )"
 PLUGIN_SLUG=$(basename $PLUGIN_DIR)
 PLUGIN_PHP_PATH="${PLUGIN_DIR}/${PLUGIN_SLUG}.php"
 
@@ -120,6 +120,7 @@ ${PLUGIN_SLUG}/.git\* \
 ${PLUGIN_SLUG}/.gitignore* \
 ${PLUGIN_SLUG}/.idea\* \
 ${PLUGIN_SLUG}/.phpcs.xml.dist \
+${PLUGIN_SLUG}/.phpstan.php \
 ${PLUGIN_SLUG}/.wordpress-org\* \
 ${PLUGIN_SLUG}/create-zip.sh \
 ${PLUGIN_SLUG}/composer.json \
@@ -127,6 +128,7 @@ ${PLUGIN_SLUG}/composer.lock \
 ${PLUGIN_SLUG}/docs\* \
 ${PLUGIN_SLUG}/package.json \
 ${PLUGIN_SLUG}/package-lock.json \
+${PLUGIN_SLUG}/phpstan.neon.dist \
 ${PLUGIN_SLUG}/README.md \
 ${PLUGIN_SLUG}/readme.md \
 ${PLUGIN_SLUG}/scoper\* \
