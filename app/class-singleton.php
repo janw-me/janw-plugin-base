@@ -23,17 +23,18 @@ trait Singleton {
 	 * @return self
 	 */
 	public static function instance() {
-		if ( ! static::$inst ) {
-			static::$inst = new self();
+		if ( ! static::$inst ) { // @phpstan-ignore-line
+			static::$inst = new self(); // @phpstan-ignore-line
 		}
 
-		return static::$inst;
+		return static::$inst; // @phpstan-ignore-line
 	}
 
 	protected function __clone() {
 	}
 
 	public function __sleep() {
+		// @phpstan-ignore-line
 	}
 
 	protected function __wakeup() {
@@ -44,7 +45,8 @@ trait Singleton {
 	 * @return self
 	 */
 	private function __construct() {
+		// @phpstan-ignore-line
 		// Possible extend.
-		return $this;
+		return $this; // @phpstan-ignore-line
 	}
 }
