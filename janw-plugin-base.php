@@ -17,9 +17,9 @@
 namespace Janw\Base_Plugin;
 
 define( 'JANW_BASE_PLUGIN_VERSION', '0.1.0' );
-define( 'JANW_BASE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'JANW_BASE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'JANW_BASE_PLUGIN_NAME', basename( __DIR__ ) . DIRECTORY_SEPARATOR . basename( __FILE__ ) );
+define( 'JANW_BASE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) ); // Full path with trailing slash.
+define( 'JANW_BASE_PLUGIN_URL', plugin_dir_url( __FILE__ ) ); // With trailing slash.
+define( 'JANW_BASE_PLUGIN_SLUG', basename( __DIR__ ) ); // janw-base-plugin.
 
 /**
  * Autoload internal classes.
@@ -46,10 +46,12 @@ spl_autoload_register( function ( $class_name ) { //phpcs:ignore PEAR.Functions.
  * Hook everything.
  */
 
-// Plugin activation.
+// Plugin (de)activation & uninstall.
 register_activation_hook( __FILE__, array( '\Janw\Base_Plugin\App\Admin', 'activate' ) );
+register_deactivation_hook( __FILE__, array( '\Janw\Base_Plugin\App\Admin', 'deactivate' ) );
+register_uninstall_hook( __FILE__, array( '\Janw\Base_Plugin\App\Admin', 'uninstall' ) );
 
 // Adds a link to the settings page on the plugin overview.
-add_filter( 'plugin_action_links_' . JANW_BASE_PLUGIN_NAME, array( '\Janw\Base_Plugin\App\Admin', 'settings_link' ) );
+add_filter( 'plugin_action_links', array( '\Janw\Base_Plugin\App\Admin', 'settings_link' ), 10, 2 );
 
-// add the rest of the hooks & filters.
+// Add the rest of the hooks & filters.
