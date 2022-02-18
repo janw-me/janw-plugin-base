@@ -105,6 +105,20 @@ if [[ -f ${PLUGIN_DIR}/package.json ]]; then
 	npm run build
 fi
 
+# Build the list of excludes.
+ZIP_EXCLUDES=() # will hold the ignore files.
+while IFS= read -r IGNORE_FILE; do
+	if [[ ${IGNORE_FILE} == \#* ]]; then
+		continue # ignore lines with a comment.
+    fi
+    if [[ -f "${PLUGIN_DIR}/${IGNORE_FILE}" ]]; then
+		ZIP_EXCLUDES+="${PLUGIN_SLUG}/${IGNORE_FILE} " # files.
+	fi
+	if [[ -d "${PLUGIN_DIR}/${IGNORE_FILE}" ]]; then
+		ZIP_EXCLUDES+="${PLUGIN_SLUG}/${IGNORE_FILE}/* " # directories
+	fi
+done < ${PLUGIN_DIR}/.distignore
+
 # Go one dir above the plugin DIR, only way to set the correct root for ZIP
 cd ${PLUGIN_DIR}/../
 
@@ -112,33 +126,14 @@ cd ${PLUGIN_DIR}/../
 printf  "Plugin Version: ${COLOR_GREEN}${VERSION}${COLOR_OFF}\n"
 printf  "Creating zip: ${COLOR_GREEN}${ZIP_FILE_NAME}${COLOR_OFF} in ${COLOR_GREEN}${PLUGIN_ZIP_DIR}${COLOR_OFF}\n"
 # Finally zip it up.
-zip -r "${PLUGIN_ZIP_PATH}" ./${PLUGIN_SLUG} -x \
-${PLUGIN_SLUG}/${PLUGIN_SLUG}*.zip \
-${PLUGIN_SLUG}/.distignore* \
-${PLUGIN_SLUG}/.editorconfig* \
-${PLUGIN_SLUG}/.git\* \
-${PLUGIN_SLUG}/.gitignore* \
-${PLUGIN_SLUG}/.idea\* \
-${PLUGIN_SLUG}/.phpcs.xml.dist \
-${PLUGIN_SLUG}/.phpstan.php \
-${PLUGIN_SLUG}/.wordpress-org\* \
-${PLUGIN_SLUG}/create-zip.sh \
-${PLUGIN_SLUG}/composer.json \
-${PLUGIN_SLUG}/composer.lock \
-${PLUGIN_SLUG}/docs\* \
-${PLUGIN_SLUG}/package.json \
-${PLUGIN_SLUG}/package-lock.json \
-${PLUGIN_SLUG}/phpstan.neon.dist \
-${PLUGIN_SLUG}/README.md \
-${PLUGIN_SLUG}/readme.md \
-${PLUGIN_SLUG}/scoper\* \
-${PLUGIN_SLUG}/scoper.inc.php \
-${PLUGIN_SLUG}/node_modules\* \
-${PLUGIN_SLUG}/vendor\* \
+set -o noglob #https://stackoverflow.com/a/11456496/933065
+zip -r ${PLUGIN_ZIP_PATH} ./${PLUGIN_SLUG} -x ${ZIP_EXCLUDES[@]}
+set +o noglob # the `*` at the end of directories kept expanding.
+
+cd ${PLUGIN_DIR}/
 
 # restore composer to development state.
 if [[ -f ${PLUGIN_DIR}/composer.lock ]]; then
-	cd ${PLUGIN_DIR}/
 	printf "restoring ${COLOR_ORANGE}composer${COLOR_OFF} development packages\n"
 	composer install --quiet --dev
 fi
