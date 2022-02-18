@@ -5,21 +5,21 @@
  * Description:       PLUGIN DESCRIPTION HERE
  * Author:            janw.oostendorp
  * Author URI:        https://janw.me
- * Text Domain:       janw-base-plugin
+ * Text Domain:       janw-plugin-base
  * Domain Path:       /languages
- * Requires at least: 5.0
- * Requires PHP:      7.2
- * Version:           0.1.0
+ * Requires at least: 5.8
+ * Requires PHP:      7.3
+ * Version:           0.9.9
  *
- * @package         Janw\Base_Plugin
+ * @package         Janw\Plugin_Base
  */
 
-namespace Janw\Base_Plugin;
+namespace Janw\Plugin_Base;
 
-define( 'JANW_BASE_PLUGIN_VERSION', '0.1.0' );
-define( 'JANW_BASE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) ); // Full path with trailing slash.
-define( 'JANW_BASE_PLUGIN_URL', plugin_dir_url( __FILE__ ) ); // With trailing slash.
-define( 'JANW_BASE_PLUGIN_SLUG', basename( __DIR__ ) ); // janw-base-plugin.
+define( 'JANW_PLUGIN_BASE_VERSION', '0.9.9' );
+define( 'JANW_PLUGIN_BASE_DIR', plugin_dir_path( __FILE__ ) ); // Full path with trailing slash.
+define( 'JANW_PLUGIN_BASE_URL', plugin_dir_url( __FILE__ ) ); // With trailing slash.
+define( 'JANW_PLUGIN_BASE_SLUG', basename( __DIR__ ) ); // janw-plugin-base.
 
 /**
  * Autoload internal classes.
@@ -35,7 +35,7 @@ spl_autoload_register( function ( $class_name ) { //phpcs:ignore PEAR.Functions.
 	$transform  = str_replace( '_', '-', $transform );                                    // Replace "_" with "-".
 	$transform  = preg_replace( '%\\\\((?:.(?!\\\\))+$)%', '\class-$1.php', $transform ); // Set correct classname.
 	$transform  = str_replace( '\\', DIRECTORY_SEPARATOR, $transform );                   // Replace NS separator with dir separator.
-	$class_path = JANW_BASE_PLUGIN_DIR . strtolower( $transform );
+	$class_path = JANW_PLUGIN_BASE_DIR . strtolower( $transform );
 	if ( ! file_exists( $class_path ) ) {
 		wp_die( "<h1>Can't find class</h1><pre><code>Class: {$class_name}<br/>Path:  {$class_path}</code></pre>" ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
@@ -47,11 +47,11 @@ spl_autoload_register( function ( $class_name ) { //phpcs:ignore PEAR.Functions.
  */
 
 // Plugin (de)activation & uninstall.
-register_activation_hook( __FILE__, array( '\Janw\Base_Plugin\App\Admin', 'activate' ) );
-register_deactivation_hook( __FILE__, array( '\Janw\Base_Plugin\App\Admin', 'deactivate' ) );
-register_uninstall_hook( __FILE__, array( '\Janw\Base_Plugin\App\Admin', 'uninstall' ) );
+register_activation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Admin', 'activate' ) );
+register_deactivation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Admin', 'deactivate' ) );
+register_uninstall_hook( __FILE__, array( '\Janw\Plugin_Base\App\Admin', 'uninstall' ) );
 
 // Adds a link to the settings page on the plugin overview.
-add_filter( 'plugin_action_links', array( '\Janw\Base_Plugin\App\Admin', 'settings_link' ), 10, 2 );
+add_filter( 'plugin_action_links', array( '\Janw\Plugin_Base\App\Admin', 'settings_link' ), 10, 2 );
 
 // Add the rest of the hooks & filters.

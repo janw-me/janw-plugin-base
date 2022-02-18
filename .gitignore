@@ -1,5 +1,6 @@
 .DS_Store
 phpcs.xml
+phpstan.neon
 phpunit.xml
 Thumbs.db
 wp-cli.local.yml

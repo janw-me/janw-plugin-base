@@ -1,6 +1,6 @@
 <?php
 
-namespace Janw\Base_Plugin\App;
+namespace Janw\Plugin_Base\App;
 
 /**
  * Class Singleton

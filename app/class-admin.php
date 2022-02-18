@@ -1,11 +1,11 @@
 <?php
 
-namespace Janw\Base_Plugin\App;
+namespace Janw\Plugin_Base\App;
 
 /**
  * Class Admin
  *
- * @package Janw\Base_Plugin\app
+ * @package Janw\Plugin_Base\app
  */
 class Admin {
 
@@ -18,12 +18,12 @@ class Admin {
 	 * @return array
 	 */
 	public static function settings_link( array $actions, string $plugin_file ): array {
-		$this_plugin_file = JANW_BASE_PLUGIN_SLUG . DIRECTORY_SEPARATOR . JANW_BASE_PLUGIN_SLUG . '.php';
+		$this_plugin_file = JANW_PLUGIN_BASE_SLUG . DIRECTORY_SEPARATOR . JANW_PLUGIN_BASE_SLUG . '.php';
 		if ( $plugin_file !== $this_plugin_file ) {
 			return $actions; // wrong plugin.
 		}
 
-		$href          = admin_url( 'options-general.php?page=' . JANW_BASE_PLUGIN_SLUG );
+		$href          = admin_url( 'options-general.php?page=' . JANW_PLUGIN_BASE_SLUG );
 		$settings_link = '<a href="' . $href . '">' . __( 'Settings' ) . '</a>'; // phpcs:ignore WordPress.WP.I18n.MissingArgDomain
 		array_unshift( $actions, $settings_link );
 
