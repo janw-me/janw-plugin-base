@@ -26,7 +26,6 @@ jobs:
         run: |
           wp dist-archive ./ ../deployments/
           ls ../deployments/
-          unzip -l $( ls ../deployments/*.zip)
 
       - name: Rsync Deployments Action
         uses: Burnett01/rsync-deployments@5.2
