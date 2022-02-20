@@ -1,0 +1,18 @@
+on: push
+name: Deploy plugin zip
+jobs:
+  build-and-upload:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get latest code
+        uses: actions/checkout@v2
+
+      - name: check wp-cli
+        run: wp info
+
+      - name: install dist-archive
+        run: wp package install wp-cli/dist-archive-command
+
+      - name: create archive.
+        run: wp dist-archive ${{ github.workspace }}
