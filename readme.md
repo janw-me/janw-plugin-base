@@ -15,8 +15,8 @@ This will rename most things:
 
 	mv janw-plugin-base.php your-slug.php
 	find ./ -type f -not -path "./.git/*" -exec sed -i 's/janw-plugin-base/your-slug/g' {} \;
-	find ./ -type f -not -path "./.git/*" -exec sed -i 's/JANW_BASE_PLUGIN/YOUR_SLUG/g' {} \;
-	find ./ -type f -not -path "./.git/*" -exec sed -i 's/Janw\\Base_Plugin/Your\\Slug/g' {} \;
+	find ./ -type f -not -path "./.git/*" -exec sed -i 's/JANW_PLUGIN_BASE/YOUR_SLUG/g' {} \;
+	find ./ -type f -not -path "./.git/*" -exec sed -i 's/Janw\\Plugin_Base/Your\\Slug/g' {} \;
 
 
 

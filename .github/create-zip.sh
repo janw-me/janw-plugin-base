@@ -82,7 +82,7 @@ fi
 VERSION=$(grep  'Version:.*' ${PLUGIN_PHP_PATH} | sed -E "s/.* ([.0-9])/\\1/")
 if [[ $ZIP_FILE_APPEND_VERSION = true ]]; then
 	#new zip name.
-	ZIP_FILE_NAME="${ZIP_FILE_NAME%.zip}-${VERSION}.zip"
+	ZIP_FILE_NAME="${ZIP_FILE_NAME%.zip}.${VERSION}.zip"
 fi
 PLUGIN_ZIP_PATH="${PLUGIN_ZIP_DIR}${ZIP_FILE_NAME}"
 
