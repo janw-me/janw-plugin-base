@@ -22,6 +22,7 @@ jobs:
         run: |
           mkdir ../deployments/
           cp ./readme.txt ../deployments/readme.txt
+          ls ../deployments/
       - name: create zip.
         run: |
           wp dist-archive ./ ../deployments/
