@@ -20,7 +20,7 @@ jobs:
           wp package list
       - name: create zip.
         run: |
-          wp dist-archive ${{ github.workspace }}/
+          wp dist-archive ${{ github.workspace }}/.
           ls -hals
           ls ../ -hals
           #unzip -l $(ls *.zip )
