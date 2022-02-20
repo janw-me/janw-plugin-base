@@ -7,7 +7,6 @@ jobs:
     steps:
       - name: Get latest code
         uses: actions/checkout@v2
-
       - name: install wp-cli
         run: |
           curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -15,14 +14,10 @@ jobs:
           mkdir -p ~/.local/bin
           mv ./wp-cli.phar ~/.local/bin/wp
           wp --info
-      - name: check wp-cli
-        run: |
-          pwd
-          echo $HOME
-          echo $PATH
-
       - name: install dist-archive
         run: wp package install wp-cli/dist-archive-command
-
       - name: create archive.
-        run: wp dist-archive ${{ github.workspace }}
+        run: |
+          wp dist-archive ${{ github.workspace }}
+          unzip -l *.zip
+
