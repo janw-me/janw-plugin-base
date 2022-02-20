@@ -7,6 +7,10 @@ jobs:
     steps:
       - name: Get latest code
         uses: actions/checkout@v2
+      - name: Prepare deployments folder.
+        run: |
+          mkdir ../deployments/
+          cp ./readme.txt ../deployments/readme.txt
       - name: install wp-cli
         run: |
           curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -18,19 +22,11 @@ jobs:
         run: |
           wp package install git@github.com:janw-me/dist-archive-command.git
           wp package list
-      - name: Prepare deployments folder.
-        run: |
-          mkdir ../deployments/
-          cp ./readme.txt ../deployments/readme.txt
-          ls ../deployments/
       - name: create zip.
         run: |
           wp dist-archive ./ ./
           mv ./*.zip ../deployments/
           ls ../deployments/
-
-      - name: Rsync Deployments Action
-        uses: Burnett01/rsync-deployments@5.2
 
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.2
