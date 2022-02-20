@@ -29,12 +29,13 @@ jobs:
           ls ../deployments/
           echo ${{ github.workspace }}
 
-      - name: rsync deployments
-        uses: burnett01/rsync-deployments@5.2
+      - name: Deploy to sandbox via rsync
+        uses: trendyminds/github-actions-rsync@master
         with:
-          switches: -avzr
-          path: ${{ github.workspace }}
-          remote_path: ${{ secrets.DEPLOY_PATH }}
-          remote_host: ${{ secrets.DEPLOY_HOST }}
-          remote_user: ${{ secrets.DEPLOY_USER }}
-          remote_key: ${{ secrets.DEPLOY_KEY }}
+          RSYNC_OPTIONS: -avzr --delete --exclude node_modules --exclude '.git*'
+          RSYNC_TARGET: ${{ secrets.DEPLOY_PATH }}
+          RSYNC_SOURCE: ${{ github.workspace }}/../deployments/
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.DEPLOY_KEY}}
+          SSH_USERNAME: ${{secrets.DEPLOY_USER}}
+          SSH_HOSTNAME: ${{secrets.DEPLOY_HOST}}
