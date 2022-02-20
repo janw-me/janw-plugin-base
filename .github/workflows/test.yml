@@ -14,13 +14,13 @@ jobs:
           mkdir -p ~/.local/bin
           mv ./wp-cli.phar ~/.local/bin/wp
           wp --info
-      - name: install dist-archive
+      - name: install wp dist-archive package
         run: |
           wp package install wp-cli/dist-archive-command
           wp package list
-      - name: create archive.
+      - name: create zip.
         run: |
-          wp dist-archive ${{ github.workspace }}
+          wp dist-archive ${{ github.workspace }}/
           ls -hals
           ls ../ -hals
-          unzip -l $(ls ../*.zip )
+          #unzip -l $(ls *.zip )
