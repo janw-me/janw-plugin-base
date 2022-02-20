@@ -16,11 +16,9 @@ jobs:
           wp --info
       - name: install wp dist-archive package
         run: |
-          wp package install wp-cli/dist-archive-command
+          wp package install git@github.com:janw-me/dist-archive-command.git
           wp package list
       - name: create zip.
         run: |
-          wp dist-archive ${{ github.workspace }}/.
-          ls -hals
-          ls ../ -hals
-          #unzip -l $(ls *.zip )
+          wp dist-archive ./ ./
+          unzip -l $(ls *.zip ) # preview the zip.
