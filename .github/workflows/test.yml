@@ -25,7 +25,8 @@ jobs:
           ls ../deployments/
       - name: create zip.
         run: |
-          wp dist-archive ./ ../deployments/
+          wp dist-archive ./ ./
+          mv ./*.zip ../deployments/
           ls ../deployments/
 
       - name: Rsync Deployments Action
