@@ -19,4 +19,6 @@ jobs:
       - name: create archive.
         run: |
           wp dist-archive ${{ github.workspace }}
-          unzip -l $(ls *.zip )
+          ls -hals
+          ls ../ -hals
+          #unzip -l $(ls *.zip )
