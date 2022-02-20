@@ -12,8 +12,11 @@ jobs:
         run: |
           curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
           chmod +x wp-cli.phar
-          ./wp-cli.phar --info
-
+          ls ~/.local/
+          ls ~/.local/bin
+          mkdir -p ~/.local/bin
+          mv ./wp-cli.phar ~/.local/bin/wp
+          wp --info
       - name: check wp-cli
         run: |
           pwd
