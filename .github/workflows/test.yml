@@ -34,7 +34,7 @@ jobs:
         with:
           RSYNC_OPTIONS: -avzr --delete --exclude node_modules --exclude '.git*'
           RSYNC_TARGET: ${{ secrets.DEPLOY_PATH }}
-          RSYNC_SOURCE: ${{ github.workspace }}/../deployments/
+          RSYNC_SOURCE: ../deployments/
         env:
           SSH_PRIVATE_KEY: ${{secrets.DEPLOY_KEY}}
           SSH_USERNAME: ${{secrets.DEPLOY_USER}}
