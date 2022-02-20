@@ -27,6 +27,9 @@ jobs:
           wp dist-archive ./ ./
           mv ./*.zip ../deployments/
           ls ../deployments/
+          pwd
+          echo ${{ github.workspace }}
+          ls ${{ github.workspace }}
 
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.2
