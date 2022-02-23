@@ -7,7 +7,7 @@ namespace Janw\Plugin_Base\App;
  *
  * @package Janw\Plugin_Base\app
  */
-class Admin {
+class Plugin {
 
 	/**
 	 * Add a settings link to the the plugin on the plugin page
@@ -15,7 +15,7 @@ class Admin {
 	 * @param string[] $actions An array of plugin action links. By default this can include 'activate', 'delete', 'network_only', ....
 	 * @param string   $plugin_file Path to the plugin file relative to the plugins directory.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public static function settings_link( array $actions, string $plugin_file ): array {
 		$this_plugin_file = JANW_PLUGIN_BASE_SLUG . DIRECTORY_SEPARATOR . JANW_PLUGIN_BASE_SLUG . '.php';
@@ -28,6 +28,15 @@ class Admin {
 		array_unshift( $actions, $settings_link );
 
 		return $actions;
+	}
+
+	/**
+	 * Load the translations for the plugin.
+	 *
+	 * @return void
+	 */
+	public static function load_textdomain() {
+		load_plugin_textdomain( JANW_PLUGIN_BASE_SLUG, false, plugin_basename( JANW_PLUGIN_BASE_DIR ) . '/languages/' );
 	}
 
 	/**

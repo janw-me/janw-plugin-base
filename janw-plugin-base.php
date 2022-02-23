@@ -35,10 +35,10 @@ spl_autoload_register( function ( $class_name ) { //phpcs:ignore PEAR.Functions.
 	if ( strpos( $class_name, __NAMESPACE__ . '\App\Vendor' ) === 0 ) {
 		return; // 3rd party, prefixed class.
 	}
-	$transform  = str_replace( __NAMESPACE__ . '\\', '', $class_name );                   // Remove NAMESPACE and it's "/".
-	$transform  = str_replace( '_', '-', $transform );                                    // Replace "_" with "-".
-	$transform  = preg_replace( '%\\\\((?:.(?!\\\\))+$)%', '\class-$1.php', $transform ); // Set correct classname.
-	$transform  = str_replace( '\\', DIRECTORY_SEPARATOR, $transform );                   // Replace NS separator with dir separator.
+	$transform  = str_replace( __NAMESPACE__ . '\\', '', $class_name );                            // Remove NAMESPACE and it's "/".
+	$transform  = str_replace( '_', '-', $transform );                                             // Replace "_" with "-".
+	$transform  = (string) preg_replace( '%\\\\((?:.(?!\\\\))+$)%', '\class-$1.php', $transform ); // Set correct classname.
+	$transform  = str_replace( '\\', DIRECTORY_SEPARATOR, $transform );                            // Replace NS separator with dir separator.
 	$class_path = JANW_PLUGIN_BASE_DIR . strtolower( $transform );
 	if ( ! file_exists( $class_path ) ) {
 		wp_die( "<h1>Can't find class</h1><pre><code>Class: {$class_name}<br/>Path:  {$class_path}</code></pre>" ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -51,11 +51,14 @@ spl_autoload_register( function ( $class_name ) { //phpcs:ignore PEAR.Functions.
  */
 
 // Plugin (de)activation & uninstall.
-register_activation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Admin', 'activate' ) );
-register_deactivation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Admin', 'deactivate' ) );
-register_uninstall_hook( __FILE__, array( '\Janw\Plugin_Base\App\Admin', 'uninstall' ) );
+register_activation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'activate' ) );
+register_deactivation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'deactivate' ) );
+register_uninstall_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'uninstall' ) );
 
 // Adds a link to the settings page on the plugin overview.
-add_filter( 'plugin_action_links', array( '\Janw\Plugin_Base\App\Admin', 'settings_link' ), 10, 2 );
+add_filter( 'plugin_action_links', array( '\Janw\Plugin_Base\App\Plugin', 'settings_link' ), 10, 2 );
+// Add translation.
+add_action( 'init', array( '\Janw\Plugin_Base\App\Plugin', 'load_textdomain' ), 10, 2 );
+
 
 // Add the rest of the hooks & filters.
