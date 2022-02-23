@@ -21,6 +21,10 @@ define( 'JANW_PLUGIN_BASE_DIR', plugin_dir_path( __FILE__ ) ); // Full path with
 define( 'JANW_PLUGIN_BASE_URL', plugin_dir_url( __FILE__ ) ); // With trailing slash.
 define( 'JANW_PLUGIN_BASE_SLUG', basename( __DIR__ ) ); // janw-plugin-base.
 
+if ( ! defined( 'ABSPATH' ) ) {
+	return; // WP not loaded
+}
+
 /**
  * Autoload internal classes.
  */
