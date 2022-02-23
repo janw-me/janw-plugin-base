@@ -22,7 +22,7 @@ define( 'JANW_PLUGIN_BASE_URL', plugin_dir_url( __FILE__ ) ); // With trailing s
 define( 'JANW_PLUGIN_BASE_SLUG', basename( __DIR__ ) ); // janw-plugin-base.
 
 if ( ! defined( 'ABSPATH' ) ) {
-	return; // WP not loaded
+	return; // WP not loaded.
 }
 
 /**
