@@ -8,6 +8,8 @@ Clone this repo in an empty directory, remove the git and start your own git.
 	rm -rf .git
 	git init
 
+Checkout the [branches](https://github.com/janw-me/janw-plugin-base/branches) for features possible needed to setup.
+
 # Setup
 
 Before actual starting there are several places that need to be renamed,
