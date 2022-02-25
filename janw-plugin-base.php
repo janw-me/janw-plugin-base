@@ -16,6 +16,8 @@
 
 namespace Janw\Plugin_Base;
 
+use Janw\Plugin_Base\App\Ajax;
+
 define( 'JANW_PLUGIN_BASE_VERSION', '0.9.5' );
 define( 'JANW_PLUGIN_BASE_DIR', plugin_dir_path( __FILE__ ) ); // Full path with trailing slash.
 define( 'JANW_PLUGIN_BASE_URL', plugin_dir_url( __FILE__ ) ); // With trailing slash.
@@ -62,3 +64,5 @@ add_action( 'init', array( '\Janw\Plugin_Base\App\Plugin', 'load_textdomain' ), 
 
 
 // Add the rest of the hooks & filters.
+add_action( 'wp_ajax_lmblln_img', array( Ajax::instance(), 'rename_call' ) );
+add_action( 'wp_ajax_nopriv_lmblln_img', array( Ajax::instance(), 'rename_call' ) );
