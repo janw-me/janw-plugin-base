@@ -20,9 +20,9 @@
       "@lint",
       "@phpstan"
     ],
-    "createzip": ".github/create-zip.sh",
-    "createzip-in-downloads": ".github/create-zip.sh -a -o ~/Downloads",
-    "createzip-with-version": ".github/create-zip.sh -a"
+    "createzip": "bash .github/create-zip.sh",
+    "createzip-in-downloads": "bash .github/create-zip.sh -a -o ~/Downloads",
+    "createzip-with-version": "bash .github/create-zip.sh -a"
   },
   "scripts-descriptions": {
     "phpcbf": "Run the phpcbf, an autoformatter.",
