@@ -21,8 +21,8 @@
       "@phpstan"
     ],
     "createzip": "bash .github/create-zip.sh",
-    "createzip-in-downloads": "bash .github/create-zip.sh -a -o ~/Downloads",
-    "createzip-with-version": "bash .github/create-zip.sh -a"
+    "createzip-in-downloads": "@createzip -a -o ~/Downloads",
+    "createzip-with-version": "@createzip -a"
   },
   "scripts-descriptions": {
     "phpcbf": "Run the phpcbf, an autoformatter.",

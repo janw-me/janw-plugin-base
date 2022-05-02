@@ -56,7 +56,8 @@ while test $# -gt 0; do
         	else
         		PLUGIN_ZIP_DIR="${1}"
         	fi
-        	PLUGIN_ZIP_DIR="${PLUGIN_ZIP_DIR%/}/"
+        	PLUGIN_ZIP_DIR="${PLUGIN_ZIP_DIR%/}/" #force training slash
+        	PLUGIN_ZIP_DIR="${PLUGIN_ZIP_DIR/#\~/$HOME}" # always expend ~
       else
         echo "no output directory specified"
         exit 1
