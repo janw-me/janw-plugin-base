@@ -55,8 +55,6 @@ register_activation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'acti
 register_deactivation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'deactivate' ) );
 register_uninstall_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'uninstall' ) );
 
-// Adds a link to the settings page on the plugin overview.
-add_filter( 'plugin_action_links', array( '\Janw\Plugin_Base\App\Plugin', 'settings_link' ), 10, 2 );
 // Add translation.
 add_action( 'init', array( '\Janw\Plugin_Base\App\Plugin', 'load_textdomain' ), 10, 2 );
 
