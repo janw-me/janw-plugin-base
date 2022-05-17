@@ -23,7 +23,7 @@ class Plugin {
 			return $actions; // wrong plugin.
 		}
 
-		$href          = admin_url( 'options-general.php?page=' . JANW_PLUGIN_BASE_SLUG );
+		$href          = admin_url( 'tools.php?page=' . JANW_PLUGIN_BASE_SLUG );
 		$settings_link = '<a href="' . $href . '">' . __( 'Settings' ) . '</a>'; // phpcs:ignore WordPress.WP.I18n.MissingArgDomain
 		array_unshift( $actions, $settings_link );
 

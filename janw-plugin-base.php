@@ -16,6 +16,8 @@
 
 namespace Janw\Plugin_Base;
 
+use Janw\Plugin_Base\App\Settings;
+
 define( 'JANW_PLUGIN_BASE_VERSION', '0.9.5' );
 define( 'JANW_PLUGIN_BASE_DIR', plugin_dir_path( __FILE__ ) ); // Full path with trailing slash.
 define( 'JANW_PLUGIN_BASE_URL', plugin_dir_url( __FILE__ ) ); // With trailing slash.
@@ -60,5 +62,8 @@ add_filter( 'plugin_action_links', array( '\Janw\Plugin_Base\App\Plugin', 'setti
 // Add translation.
 add_action( 'init', array( '\Janw\Plugin_Base\App\Plugin', 'load_textdomain' ), 10, 2 );
 
+// Add settings page.
+add_action( 'admin_menu', array( Settings::instance(), 'register_menu_page' ) );
+add_action( 'admin_init', array( Settings::instance(), 'register_settings' ) );
 
 // Add the rest of the hooks & filters.
