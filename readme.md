@@ -43,7 +43,7 @@ This will rename most things:
 Default is set to 7.3, to update it change:
 
 - `janw-base-plugin.php`
-- `composer.json`
+- `composer.json` (2 places)
 - `.phpcs.xml.dist`
 - `readme.txt`
 - `phpstan.neon.dist`
