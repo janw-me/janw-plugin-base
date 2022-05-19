@@ -11,6 +11,27 @@ class Settings {
 	use Singleton;
 
 	/**
+	 * Add a settings link to the plugin on the plugin page
+	 *
+	 * @param string[] $actions An array of plugin action links. By default this can include 'activate', 'delete', 'network_only', ....
+	 * @param string   $plugin_file Path to the plugin file relative to the plugins directory.
+	 *
+	 * @return string[]
+	 */
+	public static function plugin_link( array $actions, string $plugin_file ): array {
+		$this_plugin_file = JANW_PLUGIN_BASE_SLUG . DIRECTORY_SEPARATOR . JANW_PLUGIN_BASE_SLUG . '.php';
+		if ( $plugin_file !== $this_plugin_file ) {
+			return $actions; // wrong plugin.
+		}
+
+		$href          = admin_url( 'tools.php?page=' . JANW_PLUGIN_BASE_SLUG );
+		$settings_link = '<a href="' . $href . '">' . __( 'Settings' ) . '</a>'; // phpcs:ignore WordPress.WP.I18n.MissingArgDomain
+		array_unshift( $actions, $settings_link );
+
+		return $actions;
+	}
+
+	/**
 	 * Register a menu page.
 	 */
 	public function register_menu_page(): void {
@@ -97,7 +118,7 @@ class Settings {
 	/**
 	 * Register the textarea_example setting.
 	 */
-	protected function register_settings_textarea() {
+	protected function register_settings_textarea():void {
 		$option_name = 'textarea_example';
 		register_setting(
 			'janw-plugin-base',

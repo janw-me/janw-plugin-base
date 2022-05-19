@@ -17,11 +17,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <textarea
 	id="<?php echo esc_attr( $label_for ); ?>"
-	rows="<?php echo esc_attr( $rows ?? 8 ); ?>"
+	rows="<?php echo esc_attr( $rows ?? max( substr_count( $value, "\n" ) + 1, 8 ) ); ?>"
 	cols="<?php echo esc_attr( $cols ?? 30 ); ?>"
 	name="<?php echo esc_attr( $name ); ?>"
-><?php echo esc_html( $value ); ?></textarea>
+><?php echo esc_textarea( $value ); ?></textarea>
 
 <?php if ( ! empty( $description ) ) : ?>
-	<p class="description"><?php echo esc_html( $description ); ?></p>
+	<p class="description"><?php echo wp_kses_post( $description ); ?></p>
 <?php endif; ?>
