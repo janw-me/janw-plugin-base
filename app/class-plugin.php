@@ -10,7 +10,7 @@ namespace Janw\Plugin_Base\App;
 class Plugin {
 
 	/**
-	 * Add a settings link to the the plugin on the plugin page
+	 * Add a settings link to the plugin on the plugin page
 	 *
 	 * @param string[] $actions An array of plugin action links. By default this can include 'activate', 'delete', 'network_only', ....
 	 * @param string   $plugin_file Path to the plugin file relative to the plugins directory.
