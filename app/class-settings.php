@@ -168,7 +168,11 @@ class Settings {
 	 * @return null|bool[] null on error.
 	 */
 	public function sanitize_checkboxes_example( $values ) {
-		if ( ! is_array( $values ) ) {
+		if ( is_null( $values ) ) {
+			add_settings_error( 'textarea_example', 'empty-array', __( 'No checkboxes selected.', 'janw-plugin-base' ), 'warning' );
+			return null; // Empty.
+		} elseif ( ! is_array( $values ) ) {
+			add_settings_error( 'textarea_example', 'invalid-array', __( 'Invalid checkboxes selected.', 'janw-plugin-base' ) );
 			return null; // Error, Invalid input.
 		}
 		foreach ( $values as &$value ) {
