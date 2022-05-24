@@ -9,8 +9,8 @@ $save_notices = get_settings_errors();
 	<h1><?php esc_html_e( 'Disable Full site editing Settings', 'janw-plugin-base' ); ?></h1>
 	<?php if ( 0 !== count( $save_notices ) ) : ?>
 		<?php foreach ( $save_notices as $notice ) : ?>
-			<div class="notice notice-<?php echo esc_attr( $notice['type'] ); ?> is-dismissible">
-				<p><?php echo wp_kses_post( $notice['message'] ); ?></p>
+			<div class="notice notice-<?php echo esc_attr( $notice['type'] ); // @phpstan-ignore-line ?> is-dismissible">
+				<p><?php echo wp_kses_post( $notice['message'] ); // @phpstan-ignore-line ?></p>
 			</div>
 		<?php endforeach; ?>
 	<?php endif; ?>
