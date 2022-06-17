@@ -9,14 +9,14 @@
  * Domain Path:       /languages
  * Requires at least: 5.8
  * Requires PHP:      7.3
- * Version:           0.9.5
+ * Version:           0.10.0
  *
  * @package         Janw\Plugin_Base
  */
 
 namespace Janw\Plugin_Base;
 
-define( 'JANW_PLUGIN_BASE_VERSION', '0.9.5' );
+define( 'JANW_PLUGIN_BASE_VERSION', '0.10.0' );
 define( 'JANW_PLUGIN_BASE_DIR', plugin_dir_path( __FILE__ ) ); // Full path with trailing slash.
 define( 'JANW_PLUGIN_BASE_URL', plugin_dir_url( __FILE__ ) ); // With trailing slash.
 define( 'JANW_PLUGIN_BASE_SLUG', basename( __DIR__ ) ); // janw-plugin-base.
