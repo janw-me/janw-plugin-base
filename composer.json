@@ -20,7 +20,7 @@
       "@lint",
       "@phpstan"
     ],
-    "createzip": "bash .github/create-zip.sh",
+    "createzip": "bash .github/create-zip.sh -a",
     "createzip:downloads": "@createzip -a -o ~/Downloads",
     "bumpversion": "bash .github/update-version.sh",
     "bumpversion:major": "bash .github/update-version.sh --major",
