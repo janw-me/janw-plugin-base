@@ -11,7 +11,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build zip file
-        run: composer run createzip-with-version
+        run: composer run createzip
 
       - name: Attach zip to release
         uses: svenstaro/upload-release-action@v2
