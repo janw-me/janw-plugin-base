@@ -112,12 +112,11 @@ while IFS= read -r IGNORE_FILE; do
 	if [[ ${IGNORE_FILE} == \#* ]]; then
 		continue # ignore lines with a comment.
     fi
-    if [[ -f "${PLUGIN_DIR}/${IGNORE_FILE}" ]]; then
-		ZIP_EXCLUDES+="${PLUGIN_SLUG}/${IGNORE_FILE} " # files.
-	fi
 	if [[ -d "${PLUGIN_DIR}/${IGNORE_FILE}" ]]; then
 		ZIP_EXCLUDES+="${PLUGIN_SLUG}/${IGNORE_FILE}/* " # directories
 	fi
+	# Match files and patterns.
+	ZIP_EXCLUDES+="${PLUGIN_SLUG}/${IGNORE_FILE} "
 done < ${PLUGIN_DIR}/.distignore
 
 # Go one dir above the plugin DIR, only way to set the correct root for ZIP
