@@ -76,5 +76,6 @@ VERSION_REGEX="([0-9.]+?[-a-z0-9]+)"
 sed -i -E            "s#(Version:\s+)${VERSION_REGEX}#\1${NEW_VERSION}#g" ${PLUGIN_PHP_PATH}
 sed -i -E "s#(define.*_VERSION',\s+')${VERSION_REGEX}#\1${NEW_VERSION}#g" ${PLUGIN_PHP_PATH}
 sed -i -E        "s#(Stable tag:\s+)${VERSION_REGEX}#\1${NEW_VERSION}#g" "${PLUGIN_DIR}/readme.txt"
+sed -i -E        "s#(== Changelog ==)#\1\n\n= ${NEW_VERSION} =\n* #g" "${PLUGIN_DIR}/readme.txt"
 
 # Stable tag: 1.2.0
