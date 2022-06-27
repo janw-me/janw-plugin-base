@@ -16,10 +16,8 @@ $save_notices = get_settings_errors();
 	<?php endif; ?>
 	<?php // optional information goes here. ?>
 	<form action="<?php echo esc_attr( admin_url( 'options.php' ) ); ?>" method="POST">
-		<?php settings_fields( 'janw-plugin-base' ); ?>
+		<?php settings_fields( 'janw-plugin-base' ); // This is for nonce fields. ?>
 		<?php do_settings_sections( 'janw-plugin-base_page' ); ?>
-		<p class="submit">
-			<?php submit_button( __( 'Save', 'janw-plugin-base' ) ); ?>
-		</p>
+		<?php submit_button( __( 'Save', 'janw-plugin-base' ) ); ?>
 	</form>
 </div>
