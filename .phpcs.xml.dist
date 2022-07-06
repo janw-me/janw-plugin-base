@@ -6,7 +6,9 @@
 	<file>.</file>	<file>.</file>
 	<exclude-pattern>/.git/</exclude-pattern>
 	<exclude-pattern>/.githooks/</exclude-pattern>
+	<exclude-pattern>/.github/</exclude-pattern>
 	<exclude-pattern>/languages/</exclude-pattern>
+	<exclude-pattern>/node_modules/</exclude-pattern>
 	<exclude-pattern>/vendor/</exclude-pattern>
 
 	<!-- How to scan -->
@@ -28,11 +30,12 @@
 	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards -->
 	<!-- https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/wiki/Customizable-sniff-properties -->
 	<config name="minimum_supported_wp_version" value="5.8"/>
-	<rule ref="WordPress">
-		<exclude name="Squiz.Commenting.FileComment.Missing"/>
-	</rule>
+	<rule ref="WordPress"/>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
-		<exclude-pattern>/templates/</exclude-pattern>
+		<exclude-pattern>/janw-plugin-base/templates/</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.FileComment.Missing">
+		<exclude-pattern>/janw-plugin-base/app/</exclude-pattern>
 	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>

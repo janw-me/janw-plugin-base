@@ -9,6 +9,9 @@ parameters:
     paths:
         - .
     excludePaths:
-        - vendor
-        - node_modules
+        - .git
         - .github
+        - .githooks
+        - languages
+        - node_modules
+        - vendor
