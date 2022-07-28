@@ -4,8 +4,8 @@ parameters:
     phpVersion: 70300
     level: 8
     bootstrapFiles:
-    	- .phpstan.php
-    	- vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
+        - .phpstan.php
+        - vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
     paths:
         - .
     excludePaths:
@@ -15,3 +15,7 @@ parameters:
         - languages
         - node_modules
         - vendor
+#    ignoreErrors:
+#        - '#no value type specified in iterable type array.#'
+#        - "#Offset '[a-zA-Z0-9\\_]+' does not exist on array#"
+#        - "#Cannot access property \\$[a-zA-Z0-9\\_]+ on stdClass\\|false#"
