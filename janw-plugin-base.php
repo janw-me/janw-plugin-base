@@ -16,6 +16,8 @@
 
 namespace Janw\Plugin_Base;
 
+use Janw\Plugin_Base\App\Cron;
+
 define( 'JANW_PLUGIN_BASE_VERSION', '0.10.0' );
 define( 'JANW_PLUGIN_BASE_DIR', plugin_dir_path( __FILE__ ) ); // Full path with trailing slash.
 define( 'JANW_PLUGIN_BASE_URL', plugin_dir_url( __FILE__ ) ); // With trailing slash.
@@ -58,5 +60,12 @@ register_uninstall_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'unins
 // Add translation.
 add_action( 'init', array( '\Janw\Plugin_Base\App\Plugin', 'load_textdomain' ), 9, 2 );
 
+// Schedule on activate.
+register_activation_hook( __FILE__, array( Cron::instance(), 'schedule_cron' ) );
+// Schedule check twice a day. If for reason the cron isn't scheduled, this makes sure it does.
+add_action( 'wp_version_check', array( Cron::instance(), 'schedule_cron' ) );
+add_action( Cron::ACTION_HOOK, array( Cron::instance(), 'schedule_cron' ), 999 );
+// The callback during the cron.
+add_action( Cron::ACTION_HOOK, array( Cron::instance(), 'run_cron' ) );
 
 // Add the rest of the hooks & filters.

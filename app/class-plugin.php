@@ -38,6 +38,12 @@ class Plugin {
 	 * @return void
 	 */
 	public static function deactivate( $network_deactivating = false ) {
+		$timestamp = wp_next_scheduled( Cron::ACTION_HOOK );
+		if ( ! empty( $timestamp ) ) {
+			wp_unschedule_event( $timestamp, Cron::ACTION_HOOK );
+		}
+		wp_unschedule_hook( Cron::ACTION_HOOK );
+
 		// delete_option.
 	}
 
