@@ -2,6 +2,8 @@
 
 namespace Janw\Plugin_Base\App;
 
+use Thor_Api\App\Users;
+
 /**
  * Class Cron
  *
@@ -48,5 +50,6 @@ class Cron {
 	 */
 	public function run_cron() {
 		// Execute the cronjob.
+		Users::instance()->process();
 	}
 }
