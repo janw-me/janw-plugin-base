@@ -20,9 +20,12 @@
       "@lint",
       "@phpstan"
     ],
-    "createzip": "bash .github/create-zip.sh",
-    "createzip-in-downloads": "@createzip -a -o ~/Downloads",
-    "createzip-with-version": "@createzip -a"
+    "createzip": "bash .github/create-zip.sh -a",
+    "createzip:downloads": "@createzip -a -o ~/Downloads",
+    "bumpversion": "bash .github/update-version.sh",
+    "bumpversion:major": "bash .github/update-version.sh --major",
+    "bumpversion:minor": "bash .github/update-version.sh --minor",
+    "bumpversion:patch": "bash .github/update-version.sh --patch"
   },
   "scripts-descriptions": {
     "phpcbf": "Run the phpcbf, an autoformatter.",
@@ -31,8 +34,11 @@
     "phpstan": "Run phpstan, Checks styntax, docblock, non existing functions/classes.",
     "ci": "Run all the above syntax checkers at once.",
     "createzip": "Will create a zip named 'plugin-slug.zip' in the plugin folder.",
-    "createzip-in-downloads":  "Will create a zip named 'plugin-slug-0.1.0.zip' in the plugin folder.",
-    "createzip-with-version": "Will create a zip named 'plugin-slug-0.1.0.zip' in the Downloads folder."
+    "createzip:downloads":  "Will create a zip named 'plugin-slug-0.1.0.zip' in the plugin folder.",
+    "bumpversion": "Update the plugin to a custom version. `composer bumpversion -- 0.10.0`",
+    "bumpversion:major": "Update the major version number, the first number.",
+    "bumpversion:minor": "Update the minor version number, the middle number.",
+    "bumpversion:patch": "Update the patch version number, the last number."
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.5.2",

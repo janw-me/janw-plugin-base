@@ -9,7 +9,7 @@
  * Domain Path:       /languages
  * Requires at least: 5.8
  * Requires PHP:      7.3
- * Version:           0.9.5
+ * Version:           0.10.0
  *
  * @package         Janw\Plugin_Base
  */
@@ -18,7 +18,7 @@ namespace Janw\Plugin_Base;
 
 use Janw\Plugin_Base\App\Ajax;
 
-define( 'JANW_PLUGIN_BASE_VERSION', '0.9.5' );
+define( 'JANW_PLUGIN_BASE_VERSION', '0.10.0' );
 define( 'JANW_PLUGIN_BASE_DIR', plugin_dir_path( __FILE__ ) ); // Full path with trailing slash.
 define( 'JANW_PLUGIN_BASE_URL', plugin_dir_url( __FILE__ ) ); // With trailing slash.
 define( 'JANW_PLUGIN_BASE_SLUG', basename( __DIR__ ) ); // janw-plugin-base.
@@ -57,10 +57,8 @@ register_activation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'acti
 register_deactivation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'deactivate' ) );
 register_uninstall_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'uninstall' ) );
 
-// Adds a link to the settings page on the plugin overview.
-add_filter( 'plugin_action_links', array( '\Janw\Plugin_Base\App\Plugin', 'settings_link' ), 10, 2 );
 // Add translation.
-add_action( 'init', array( '\Janw\Plugin_Base\App\Plugin', 'load_textdomain' ), 10, 2 );
+add_action( 'init', array( '\Janw\Plugin_Base\App\Plugin', 'load_textdomain' ), 9, 2 );
 
 
 // Add the rest of the hooks & filters.
