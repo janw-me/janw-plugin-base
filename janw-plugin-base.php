@@ -60,7 +60,7 @@ register_uninstall_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'unins
 // Adds a link to the settings page on the plugin overview.
 add_filter( 'plugin_action_links', array( '\Janw\Plugin_Base\App\Settings', 'plugin_link' ), 10, 2 );
 // Add translation.
-add_action( 'init', array( '\Janw\Plugin_Base\App\Plugin', 'load_textdomain' ), 10, 2 );
+add_action( 'init', array( '\Janw\Plugin_Base\App\Plugin', 'load_textdomain' ), 9, 2 );
 
 // Add settings page.
 add_action( 'admin_menu', array( Settings::instance(), 'register_menu_page' ) );
