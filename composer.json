@@ -10,6 +10,8 @@
     }
   ],
   "scripts": {
+    "phpunit:install": "export TMPDIR=vendor/wp-test; bin/install-wp-tests.sh test $(wp config get DB_USER) $(wp config get DB_PASSWORD) $(wp config get DB_HOST)",
+    "phpunit:run": "@php vendor/bin/phpunit",
     "phpcbf": "@php vendor/bin/phpcbf || true",
     "phpcs": "@php vendor/bin/phpcs",
     "lint": "@php vendor/bin/parallel-lint --exclude ../.git --exclude vendor  .",
@@ -47,7 +49,8 @@
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
     "szepeviktor/phpstan-wordpress": "^1.0",
     "php-stubs/acf-pro-stubs": "^5.10",
-    "php-parallel-lint/php-parallel-lint": "^1.2"
+    "php-parallel-lint/php-parallel-lint": "^1.2",
+    "yoast/phpunit-polyfills": "^1.0"
   },
   "require": {
     "php": ">=7.3"
