@@ -12,6 +12,7 @@
   "scripts": {
     "phpunit:install": "export TMPDIR=vendor/wp-test; bin/install-wp-tests.sh test $(wp config get DB_USER) $(wp config get DB_PASSWORD) $(wp config get DB_HOST)",
     "phpunit:run": "@php vendor/bin/phpunit",
+    "phpunit:coverage": "XDEBUG_MODE=coverage; vendor/bin/phpunit --coverage-text",
     "phpcbf": "@php vendor/bin/phpcbf || true",
     "phpcs": "@php vendor/bin/phpcs",
     "lint": "@php vendor/bin/parallel-lint --exclude ../.git --exclude vendor  .",
