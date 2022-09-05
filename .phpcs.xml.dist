@@ -3,7 +3,7 @@
 	<description>Generally-applicable sniffs for WordPress plugins.</description>
 
 	<!-- What to scan -->
-	<file>.</file>	<file>.</file>
+	<file>.</file>
 	<exclude-pattern>/.git/</exclude-pattern>
 	<exclude-pattern>/.githooks/</exclude-pattern>
 	<exclude-pattern>/.github/</exclude-pattern>
