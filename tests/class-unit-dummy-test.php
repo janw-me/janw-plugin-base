@@ -5,12 +5,14 @@
  * @package Janw_Plugin_Base
  */
 
+namespace Janw\Plugin_Base\Tests;
+
 use Janw\Plugin_Base\App\Unit_Dummy;
 
 /**
  * Sample test case.
  */
-class Unit_Dummy_Test extends WP_UnitTestCase {
+class Unit_Dummy_Test extends \WP_UnitTestCase {
 
 	/**
 	 * Test function.
