@@ -39,8 +39,8 @@
 		<exclude-pattern>/janw-plugin-base/tests/</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Commenting.DocComment.MissingShort">
-		<exclude-pattern>/mimic-chest/app/</exclude-pattern>
-		<exclude-pattern>/mimic-chest/tests/</exclude-pattern>
+		<exclude-pattern>/janw-plugin-base/app/</exclude-pattern>
+		<exclude-pattern>/janw-plugin-base/tests/</exclude-pattern>
 	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
