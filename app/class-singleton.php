@@ -37,7 +37,7 @@ trait Singleton {
 		// @phpstan-ignore-line
 	}
 
-	protected function __wakeup() {
+	public function __wakeup() {
 		throw new \Exception( 'Cannot unserialize singleton' );
 	}
 
