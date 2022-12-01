@@ -10,7 +10,7 @@ namespace Janw\Plugin_Base\App;
  * phpcs:disable Squiz.Commenting.FunctionComment
  * phpcs:disable Generic.Commenting.DocComment
  *
- * @package Baked_Blocks\App
+ * @package Janw\Plugin_Base\App
  */
 trait Singleton {
 
