@@ -5,6 +5,7 @@ name: Deploy plugin zip
 jobs:
   build-and-upload:
     name: Deploy
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Get latest code
