@@ -21,12 +21,12 @@ class Plugin {
 	/**
 	 * Run on plugin activation.
 	 *
-	 * @param string $plugin Path to the plugin file relative to the plugins directory.
-	 * @param bool   $network_wide Whether to enable the plugin for all sites in the network or just the current site.
+	 * @param string|null $plugin Path to the plugin file relative to the plugins directory.
+	 * @param bool        $network_wide Whether to enable the plugin for all sites in the network or just the current site.
 	 *
 	 * @return void
 	 */
-	public static function activate( $plugin, $network_wide = false ) {
+	public static function activate( string $plugin = null, $network_wide = false ) {
 		// update_option.
 	}
 
