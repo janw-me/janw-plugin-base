@@ -16,6 +16,7 @@ parameters:
         - node_modules
         - vendor
 #    ignoreErrors:
+#        - "#Unsafe access to private property [a-zA-Z0-9\\_\\\\]+::\\$inst through static::.#"
 #        - '#no value type specified in iterable type array.#'
 #        - "#Offset '[a-zA-Z0-9\\_]+' does not exist on array#"
 #        - "#Cannot access property \\$[a-zA-Z0-9\\_]+ on stdClass\\|false#"
