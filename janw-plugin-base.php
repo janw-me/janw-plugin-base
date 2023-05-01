@@ -56,7 +56,7 @@ register_deactivation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'de
 register_uninstall_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'uninstall' ) );
 
 // Add translation.
-add_action( 'init', array( '\Janw\Plugin_Base\App\Plugin', 'load_textdomain' ), 9, 2 );
+add_action( 'init', array( '\Janw\Plugin_Base\App\Plugin', 'load_textdomain' ), 9 );
 
 
 // Add the rest of the hooks & filters.
