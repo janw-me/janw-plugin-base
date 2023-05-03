@@ -16,6 +16,7 @@ Before actual starting there are several places that need to be renamed,
 This will rename most things:
 
 	mv janw-plugin-base.php your-slug.php
+	mv languages/janw-plugin-base-nl_NL.po languages/your-slug-nl_NL.po
 	find ./ -type f -not -path "./.git/*" -exec sed -i 's/janw-plugin-base/your-slug/g' {} \;
 	find ./ -type f -not -path "./.git/*" -exec sed -i 's/JANW_PLUGIN_BASE/YOUR_SLUG/g' {} \;
 	find ./ -type f -not -path "./.git/*" -exec sed -i 's/Janw\\Plugin_Base/Your\\Slug/g' {} \;
