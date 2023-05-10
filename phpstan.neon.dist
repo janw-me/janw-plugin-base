@@ -12,6 +12,7 @@ parameters:
         - .git
         - .github
         - .githooks
+		- phpstan.php
         - languages
         - node_modules
         - vendor
