@@ -3,9 +3,9 @@ includes:
 parameters:
     phpVersion: 70300
     level: 8
-    bootstrapFiles:
-        - .phpstan.php
-        - vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
+    scanFiles:
+        - ./vendor/php-stubs/wordpress-tests-stubs/wordpress-tests-stubs.php
+        - ./phpstan.php
     paths:
         - .
     excludePaths:
@@ -17,7 +17,7 @@ parameters:
         - node_modules
         - vendor
 #    ignoreErrors:
-#        - "#Unsafe access to private property [a-zA-Z0-9\\_\\\\]+::\\$inst through static::.#"
-#        - '#no value type specified in iterable type array.#'
-#        - "#Offset '[a-zA-Z0-9\\_]+' does not exist on array#"
-#        - "#Cannot access property \\$[a-zA-Z0-9\\_]+ on stdClass\\|false#"
+#        - "#^Unsafe access to private property [a-zA-Z0-9\\_\\\\]+::\\$inst through static::.$#"
+#        - '#no value type specified in iterable type array.$#'
+#        - "#^Offset '[a-zA-Z0-9\\_]+' does not exist on array$#"
+#        - "#^Cannot access property \\$[a-zA-Z0-9\\_]+ on stdClass\\|false$#"
