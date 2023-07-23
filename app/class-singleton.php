@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Janw\Plugin_Base\App;
 
@@ -22,7 +23,7 @@ trait Singleton {
 	/**
 	 * @return self
 	 */
-	public static function instance() {
+	public static function instance(): self {
 		if ( ! static::$inst ) { // @phpstan-ignore-line
 			static::$inst = new self(); // @phpstan-ignore-line
 		}
@@ -37,7 +38,7 @@ trait Singleton {
 		// @phpstan-ignore-line
 	}
 
-	public function __wakeup() {
+	public function __wakeup(): void {
 		throw new \Exception( 'Cannot unserialize singleton' );
 	}
 

@@ -48,6 +48,7 @@ Default is set to 8.0, to update it change:
 - `.phpcs.xml.dist`
 - `readme.txt`
 - `phpstan.neon.dist`
+- `phpcs-fixer.dist.php`
 
 ## Change WP version
 The default is 5.8, to update is change:

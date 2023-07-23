@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Janw\Plugin_Base\App;
 
@@ -14,8 +15,8 @@ class Plugin {
 	 *
 	 * @return void
 	 */
-	public static function load_textdomain() {
-		load_plugin_textdomain( JANW_PLUGIN_BASE_SLUG, false, plugin_basename( JANW_PLUGIN_BASE_DIR ) . '/languages/' );
+	public static function load_textdomain(): void {
+		\load_plugin_textdomain( JANW_PLUGIN_BASE_SLUG, false, \plugin_basename( JANW_PLUGIN_BASE_DIR ) . '/languages/' );
 	}
 
 	/**
@@ -26,7 +27,7 @@ class Plugin {
 	 *
 	 * @return void
 	 */
-	public static function activate( string $plugin = null, $network_wide = false ) {
+	public static function activate( string $plugin = null, bool $network_wide = false ): void {
 		// update_option.
 	}
 
@@ -37,7 +38,7 @@ class Plugin {
 	 *
 	 * @return void
 	 */
-	public static function deactivate( $network_deactivating = false ) {
+	public static function deactivate( bool $network_deactivating = false ): void {
 		// delete_option.
 	}
 
@@ -46,7 +47,7 @@ class Plugin {
 	 *
 	 * @return void
 	 */
-	public static function uninstall() {
+	public static function uninstall(): void {
 		// delete_option.
 	}
 }

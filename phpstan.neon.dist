@@ -4,7 +4,7 @@ parameters:
     phpVersion: 80000 #80100
     level: 8
     scanFiles:
-        - ./vendor/php-stubs/wordpress-tests-stubs/wordpress-tests-stubs.php
+        - ./vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
         - ./phpstan.php
     paths:
         - .
