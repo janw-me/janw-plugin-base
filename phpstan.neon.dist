@@ -1,7 +1,7 @@
 includes:
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
-    phpVersion: 70300
+    phpVersion: 80000 #80100
     level: 8
     scanFiles:
         - ./vendor/php-stubs/wordpress-tests-stubs/wordpress-tests-stubs.php
@@ -12,7 +12,7 @@ parameters:
         - .git
         - .github
         - .githooks
-		- phpstan.php
+        - phpstan.php
         - languages
         - node_modules
         - vendor

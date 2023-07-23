@@ -41,7 +41,7 @@ This will rename most things:
 - clear this section and the install section.
 
 ## Change php version
-Default is set to 7.3, to update it change:
+Default is set to 8.0, to update it change:
 
 - `janw-base-plugin.php`
 - `composer.json` (2 places)
