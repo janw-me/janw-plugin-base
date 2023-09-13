@@ -51,4 +51,3 @@ class Plugin {
 		// delete_option.
 	}
 }
-
