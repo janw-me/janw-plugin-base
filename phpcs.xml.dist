@@ -34,6 +34,9 @@
 	<config name="minimum_supported_wp_version" value="6.3"/>
 	<rule ref="Generic.ControlStructures.DisallowYodaConditions"/>
 	<rule ref="WordPress-Docs"/>
+	<rule ref="WordPress">
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
+	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
 		<exclude-pattern>/janw-plugin-base/templates/</exclude-pattern>
 	</rule>
