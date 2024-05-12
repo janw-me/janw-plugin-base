@@ -11,6 +11,34 @@ namespace Janw\Plugin_Base\App;
 class Plugin {
 
 	/**
+	 * Autoload classes.
+	 *
+	 * @param string $class_name The class name to autoload.
+	 *
+	 * @return void
+	 */
+	public static function autoloader( string $class_name ): void {
+		if ( ! \str_starts_with( $class_name, __NAMESPACE__ ) ) {
+			return; // Not in the plugin namespace, don't check.
+		} elseif ( \str_starts_with( $class_name, __NAMESPACE__ . '\Vendor' ) ) {
+			return; // 3rd party, prefixed class, composer autoloaders should handle these.
+		}
+		// lowercase, Remove NAMESPACE, Replace \\ → /   _ → - .
+		$class_path = \strtolower( \str_replace( array( __NAMESPACE__, '\\', '_' ), array( '', \DIRECTORY_SEPARATOR, '-' ), $class_name ) );
+		$class_path = JANW_PLUGIN_BASE_DIR . 'app' . \dirname( $class_path ) . \DIRECTORY_SEPARATOR . 'class-' . \basename( $class_path ) . '.php';
+		if ( \file_exists( $class_path ) ) {
+			require_once $class_path;
+			return;
+		}
+		$trait_path = \str_replace( 'class-', 'trait-', $class_path );
+		if ( \file_exists( $trait_path ) ) {
+			require_once $trait_path;
+			return;
+		}
+		\wp_die( "<h1>Can't find class</h1><pre><code>Class: {$class_name}<br/>Path: {$class_path}</code></pre>" ); // phpcs:ignore WordPress.Security.EscapeOutput
+	}
+
+	/**
 	 * Load the translations for the plugin.
 	 *
 	 * @return void
