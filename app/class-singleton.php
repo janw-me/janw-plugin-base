@@ -25,7 +25,7 @@ trait Singleton {
 	 */
 	final public static function instance(): self {
 		if ( ! static::$inst ) { // @phpstan-ignore-line
-			static::$inst = new self(); // @phpstan-ignore-line
+			static::$inst = new static(); // @phpstan-ignore-line
 		}
 
 		return static::$inst; // @phpstan-ignore-line
