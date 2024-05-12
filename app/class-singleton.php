@@ -16,19 +16,19 @@ namespace Janw\Plugin_Base\App;
 trait Singleton {
 
 	/**
-	 * @var self
+	 * @var static[]
 	 */
-	private static $inst;
+	private static array $instances = array();
 
 	/**
-	 * @return self
+	 * @return static
 	 */
-	final public static function instance(): self {
-		if ( ! static::$inst ) { // @phpstan-ignore-line
-			static::$inst = new static(); // @phpstan-ignore-line
+	final public static function instance(): static {
+		$class = static::class;
+		if ( ! isset( self::$instances[ $class ] ) ) {
+			self::$instances[ $class ] = new static();
 		}
-
-		return static::$inst; // @phpstan-ignore-line
+		return self::$instances[ $class ];
 	}
 
 	final protected function __clone() {
@@ -43,8 +43,13 @@ trait Singleton {
 	}
 
 	/**
-	 * @return self
+	 * Singleton constructor cannot be overridden.
+	 *
+	 * To allow it to be "extended" use the `init()` method.
 	 */
 	final private function __construct() {
+		if ( \method_exists( $this, 'init' ) ) {
+			$this->init();
+		}
 	}
 }
