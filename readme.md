@@ -21,8 +21,6 @@ This will rename most things:
 	find ./ -type f -not -path "./.git/*" -exec sed -i 's/JANW_PLUGIN_BASE/YOUR_SLUG/g' {} \;
 	find ./ -type f -not -path "./.git/*" -exec sed -i 's/Janw\\Plugin_Base/Your\\Slug/g' {} \;
 
-
-
 - `composer.json`
 	- name (the user should probably change)
   	- description
@@ -41,7 +39,7 @@ This will rename most things:
 - clear this section and the install section.
 
 ## Change php version
-Default is set to 8.0, to update it change:
+Default is set to 8.2, to update it change:
 
 - `janw-base-plugin.php`
 - `composer.json` (2 places)
@@ -51,7 +49,7 @@ Default is set to 8.0, to update it change:
 - `phpcs-fixer.dist.php`
 
 ## Change WP version
-The default is 5.8, to update is change:
+The default is 6.6, to update is change:
 
 - `janw-base-plugin.php`
 - `.phpcs.xml.dist`

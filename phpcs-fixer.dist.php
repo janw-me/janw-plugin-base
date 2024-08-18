@@ -14,7 +14,7 @@ $config
 	->setFinder( $finder )
 	->setRules(
 		array(
-			'@PHP80Migration:risky'      => true,
+			'@PHP82Migration'          => true,
 			'array_syntax'               => array( 'syntax' => 'long' ),
 			'constant_case'              => array( 'case' => 'lower' ),
 			'phpdoc_to_param_type'       => true,
