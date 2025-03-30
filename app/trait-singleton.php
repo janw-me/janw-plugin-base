@@ -20,9 +20,6 @@ trait Singleton {
 	 */
 	private static array $instances = array();
 
-	/**
-	 * @return static
-	 */
 	final public static function instance(): static {
 		$class = static::class;
 		if ( ! isset( self::$instances[ $class ] ) ) {

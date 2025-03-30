@@ -16,6 +16,8 @@
 
 namespace Janw\Plugin_Base;
 
+use Janw\Plugin_Base\App\Plugin;
+
 define( 'JANW_PLUGIN_BASE_VERSION', '0.10.0' );
 define( 'JANW_PLUGIN_BASE_DIR', plugin_dir_path( __FILE__ ) ); // Full path with trailing slash.
 define( 'JANW_PLUGIN_BASE_URL', plugin_dir_url( __FILE__ ) ); // With trailing slash.
@@ -29,19 +31,19 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Autoload internal classes.
  */
 require_once JANW_PLUGIN_BASE_DIR . 'app/class-plugin.php';
-spl_autoload_register( array( '\Janw\Plugin_Base\App\Plugin', 'autoloader' ) );
+spl_autoload_register( array( Plugin::class, 'autoloader' ) );
 
 /**
  * Hook everything.
  */
 
 // Plugin (de)activation & uninstall.
-register_activation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'activate' ) );
-register_deactivation_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'deactivate' ) );
-register_uninstall_hook( __FILE__, array( '\Janw\Plugin_Base\App\Plugin', 'uninstall' ) );
+register_activation_hook( __FILE__, array( Plugin::class, 'activate' ) );
+register_deactivation_hook( __FILE__, array( Plugin::class, 'deactivate' ) );
+register_uninstall_hook( __FILE__, array( Plugin::class, 'uninstall' ) );
 
 // Add translation.
-add_action( 'init', array( '\Janw\Plugin_Base\App\Plugin', 'load_textdomain' ), 9 );
+add_action( 'init', array( Plugin::class, 'load_textdomain' ), 9 );
 
 
 // Add the rest of the hooks & filters.
