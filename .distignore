@@ -23,11 +23,13 @@ dependencies.yml
 Gruntfile.js
 package.json
 package-lock.json
+phpcs-fixer.dist.php
 phpstan.php
 phpstan.neon
 phpstan.neon.dist
 phpunit.xml
 phpunit.xml.dist
+phprector.php
 multisite.xml
 multisite.xml.dist
 phpcs.xml
