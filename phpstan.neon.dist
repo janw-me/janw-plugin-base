@@ -1,4 +1,5 @@
 includes:
+    - phar://phpstan.phar/conf/bleedingEdge.neon
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
     phpVersion: 80200
@@ -11,10 +12,10 @@ parameters:
     excludePaths:
         - .git
         - .github
-        - .githooks
+        # - .githooks
         - phpstan.php
         - languages
-        - node_modules
+        # - node_modules
         - vendor
 #    ignoreErrors:
 #        - "#^Unsafe access to private property [a-zA-Z0-9\\_\\\\]+::\\$inst through static::.$#"
