@@ -4,7 +4,6 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\Php53\Rector\Ternary\TernaryToElvisRector;
 use Rector\Php54\Rector\Array_\LongArrayToShortArrayRector;
-use Rector\Php81\Rector\Array_\FirstClassCallableRector;
 use Rector\Php81\Rector\FuncCall\NullToStrictStringFuncCallArgRector;
 use Rector\EarlyReturn\Rector\Foreach_\ChangeNestedForeachIfsToEarlyContinueRector;
 use Rector\EarlyReturn\Rector\If_\ChangeIfElseValueAssignToEarlyReturnRector;
@@ -14,6 +13,7 @@ use Rector\EarlyReturn\Rector\Return_\PreparedValueToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\StmtsAwareInterface\ReturnEarlyIfVariableRector;
 use Rector\Php70\Rector\StmtsAwareInterface\IfIssetToCoalescingRector;
+use Rector\Php81\Rector\Array_\ArrayToFirstClassCallableRector;
 
 return RectorConfig::configure()
 	->withPaths(
@@ -49,7 +49,7 @@ return RectorConfig::configure()
 			LongArrayToShortArrayRector::class,
 			TernaryToElvisRector::class,
 			NullToStrictStringFuncCallArgRector::class, // PHPStan handles this better.
-			FirstClassCallableRector::class,
+			ArrayToFirstClassCallableRector::class,
 			IfIssetToCoalescingRector::class,
 		),
 	);
