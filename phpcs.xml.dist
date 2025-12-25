@@ -51,14 +51,17 @@
 	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
-			<!-- Value: replace the function, class, and variable prefixes used. Separate multiple prefixes with a comma. -->
-			<property name="prefixes" type="array" value="janw_plugin_base,janwpb"/>
+			<property name="prefixes" type="array">
+				<element value="janw_plugin_base"/>
+				<element value="janwpb"/>
+			</property>
 		</properties>
 	</rule>
 	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<!-- Value: replace the text domain used. -->
-			<property name="text_domain" type="array" value="janw-plugin-base"/>
+			<property name="text_domain" type="array">
+				<element value="janw-plugin-base"/>
+			</property>
 		</properties>
 	</rule>
 	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing">

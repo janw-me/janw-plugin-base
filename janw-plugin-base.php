@@ -10,8 +10,10 @@
  * Requires at least: 6.6
  * Requires PHP:      8.2
  * Version:           0.10.0
+ * License:           GPLv2
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  *
- * @package         Janw\Plugin_Base
+ * @package           Janw\Plugin_Base
  */
 
 namespace Janw\Plugin_Base;

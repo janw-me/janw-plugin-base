@@ -4,7 +4,11 @@ declare(strict_types=1);
 namespace Janw\Plugin_Base\App;
 
 /**
- * Class Admin
+ * Class Plugin
+ *
+ * Handle internal plugin functionality.
+ * Like translations, activation, deactivation, settings links.
+ * Functionality that is linked to WordPress and plugin itself.
  *
  * @package Janw\Plugin_Base\app
  */
