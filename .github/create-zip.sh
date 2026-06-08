@@ -94,11 +94,11 @@ if [[ -f "${PLUGIN_ZIP_PATH}" ]]; then
 fi
 
 # Build
-if [[ -f ${PLUGIN_DIR}/composer.lock ]]; then
-	cd ${PLUGIN_DIR}/
-	printf "Installing ${COLOR_ORANGE}composer${COLOR_OFF} packages (no-dev)\n"
-	composer install --quiet --no-dev
-fi
+# if [[ -f ${PLUGIN_DIR}/composer.lock ]]; then
+# 	cd ${PLUGIN_DIR}/
+# 	printf "Installing ${COLOR_ORANGE}composer${COLOR_OFF} packages (no-dev)\n"
+# 	composer install --quiet --no-dev
+# fi
 if [[ -f ${PLUGIN_DIR}/package.json ]]; then
 	cd ${PLUGIN_DIR}/
 	printf "Building ${COLOR_ORANGE}npm${COLOR_OFF} packages\n"
