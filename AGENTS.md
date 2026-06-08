@@ -115,7 +115,8 @@ Common building blocks have worked examples in `examples/` (current house style 
 ## Setup, versioning, release
 
 - **Rename the boilerplate:** `bin/setup.sh` (or `composer setup`) — replaces the placeholders, renames
-  files, fills the plugin header, and removes boilerplate-only bits. Do this once per new project.
+  files, fills the plugin header, resets the git history to a single clean initial commit, and removes
+  itself. Do this once per new project.
 - **Bump version:** `composer bumpversion:patch|minor|major` (runs CI first, updates the header,
   constant, and `readme.txt` changelog). `composer publish-version` commits, tags, and pushes.
 - **Build a zip:** `composer createzip` (or `createzip:downloads`). `.distignore` controls what ships.

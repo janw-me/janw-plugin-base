@@ -20,7 +20,8 @@ Rename the boilerplate for your project with the bundled script (run once, from 
 	bin/setup.sh --name "My Plugin" --slug my-plugin --namespace "Acme\\My"
 
 This replaces every placeholder (slug, constants, namespace, function/hook prefixes, plugin name),
-renames the main file and the language file, and then removes itself. Run `bin/setup.sh --help` to
+renames the main file and the language file, **resets the git history to a single initial commit**,
+and then removes itself. Run `bin/setup.sh --help` to
 see the optional flags (`--prefix`, `--short-prefix`, `--const-prefix`, `--description`).
 
 Afterwards:

@@ -151,11 +151,22 @@ if [[ -f "languages/janw-plugin-base-nl_NL.po" ]]; then
 	mv "languages/janw-plugin-base-nl_NL.po" "languages/${SLUG}-nl_NL.po"
 fi
 
+# Reset git history so the new project starts clean.
+if [ -d .git ]; then
+	echo "Resetting git history…"
+	rm -rf .git
+	git init -q
+	git add -A
+	git commit -q -m "Initial commit (${NAME} ${SLUG})"
+	echo "  New git repository initialised with one initial commit."
+fi
+
 echo ""
 echo "Done. Next steps:"
 echo "  1. Review readme.md / readme.txt and remove the boilerplate setup notes."
 echo "  2. Check composer.json (vendor name) and the plugin header in ${SLUG}.php."
 echo "  3. composer install && composer ci && composer test"
+echo "  4. git remote add origin <your-repo-url> && git push -u origin main"
 echo ""
 echo "Removing bin/setup.sh."
 rm -- "$0"
