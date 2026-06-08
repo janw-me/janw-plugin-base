@@ -11,51 +11,65 @@
     }
   ],
   "scripts": {
-    "phpfixer": "@php vendor/bin/php-cs-fixer fix --config=phpcs-fixer.dist.php",
-    "phpcbf": "@php vendor/bin/phpcbf || true",
-    "phpcs": "@php vendor/bin/phpcs",
-    "phpstan": "@php vendor/bin/phpstan",
-    "phprector": "@php vendor/bin/rector --config=phprector.php",
-    "ci": [
-      "@phprector",
-      "@phpfixer",
-      "@phpcbf",
-      "@phpcs",
-      "@phpstan"
-    ],
+    "ci": "bash .github/ci.sh",
+    "ci:changed": "bash .github/ci.sh --changed",
+    "phpfixer": "bash .github/ci.sh --tools=php-cs-fixer",
+    "phpcbf": "bash .github/ci.sh --tools=phpcbf",
+    "phpcs": "bash .github/ci.sh --tools=phpcs",
+    "phpstan": "bash .github/ci.sh --tools=phpstan",
+    "phprector": "bash .github/ci.sh --tools=rector",
     "createzip": "bash .github/create-zip.sh -a",
     "createzip:downloads": "@createzip -a -o ~/Downloads",
-    "bumpversion": "bash .github/update-version.sh",
-    "bumpversion:major": "bash .github/update-version.sh --major",
-    "bumpversion:minor": "bash .github/update-version.sh --minor",
-    "bumpversion:patch": "bash .github/update-version.sh --patch",
-    "update-translations": "wp i18n make-pot ./ && wp i18n update-po ./languages/janw-plugin-base.pot && wp i18n make-mo ./languages/",
-    "publish-version": "bash .github/version-commit.sh"
+    "update-translations": "wp i18n make-pot ./ && wp i18n update-po ./languages/animal-food-bank.pot && wp i18n make-mo ./languages/",
+    "bumpversion": [
+      "@ci",
+      "bash .github/update-version.sh"
+    ],
+    "bumpversion:major": [
+      "@ci",
+      "bash .github/update-version.sh --major"
+    ],
+    "bumpversion:minor": [
+      "@ci",
+      "bash .github/update-version.sh --minor"
+    ],
+    "bumpversion:patch": [
+      "@ci",
+      "bash .github/update-version.sh --patch"
+    ],
+    "publish-version": "bash .github/version-commit.sh",
+    "publish-zip": [
+      "@publish-version",
+      "@createzip:downloads"
+    ]
   },
   "scripts-descriptions": {
-    "phpcbf": "Run the phpcbf, an autoformatter.",
-    "phpcs": "Run phpcs, Checks style and syntax agianst theh WordPress coding stadard.",
-    "phpstan": "Run phpstan, Checks styntax, docblock, non existing functions/classes.",
-    "phprector": "Run rector, Checks styntax, docblock, non existing functions/classes.",
-    "ci": "Run all the above syntax checkers at once.",
+    "phpcbf": "Run phpcbf autoformatter on all files via ci.sh.",
+    "phpcs": "Run phpcs on all files via ci.sh.",
+    "phpstan": "Run phpstan on all files via ci.sh.",
+    "phprector": "Run rector on all files via ci.sh.",
+    "ci": "Run all syntax checkers on all files via ci.sh.",
+    "ci:changed": "Run all syntax checkers on changed files only via ci.sh.",
     "createzip": "Will create a zip named 'plugin-slug.zip' in the plugin folder.",
-    "createzip:downloads":  "Will create a zip named 'plugin-slug-0.1.0.zip' in the plugin folder.",
-    "bumpversion": "Update the plugin to a custom version. `composer bumpversion -- 0.10.0`",
-    "bumpversion:major": "Update the major version number, the first number.",
-    "bumpversion:minor": "Update the minor version number, the middle number.",
-    "bumpversion:patch": "Update the patch version number, the last number.",
+    "createzip:downloads": "Will create a zip named 'plugin-slug-0.1.0.zip' in the plugin folder.",
+    "bumpversion": "Run CI, then update plugin to a custom version. `composer bumpversion -- 0.10.0`",
+    "bumpversion:major": "Run CI, then update major version number.",
+    "bumpversion:minor": "Run CI, then update minor version number.",
+    "bumpversion:patch": "Run CI, then update patch version number.",
     "publish-version": "Commit the new version, tag it and push it."
   },
   "require-dev": {
-    "wp-coding-standards/wpcs": "^3",
-    "phpcompatibility/phpcompatibility-wp": "^2",
+    "wp-coding-standards/wpcs": "^3.1",
+    "phpcompatibility/phpcompatibility-wp": "^2.1.7",
     "dealerdirect/phpcodesniffer-composer-installer": "^1",
-    "szepeviktor/phpstan-wordpress": "^2.0",
-    "phpstan/phpstan": "^2.1",
-    "friendsofphp/php-cs-fixer": "^3.64",
-    "php-stubs/wp-cli-stubs": "^2.9",
-    "wp-cli/wp-cli-bundle": "^2.11",
-    "rector/rector": "^2.0"
+    "szepeviktor/phpstan-wordpress": "^2.0.2",
+    "phpstan/phpstan": "^2.1.17",
+    "php-stubs/acf-pro-stubs": "^6.3.10",
+    "friendsofphp/php-cs-fixer": "^3.75",
+    "php-stubs/wp-cli-stubs": "^2.12",
+    "wp-cli/wp-cli-bundle": "^2.12",
+    "php-stubs/woocommerce-stubs": "^10.5.2",
+    "rector/rector": "^2.0.18"
   },
   "require": {
     "php": ">=8.2"
