@@ -18,9 +18,13 @@
     "phpcs": "bash .github/ci.sh --tools=phpcs",
     "phpstan": "bash .github/ci.sh --tools=phpstan",
     "phprector": "bash .github/ci.sh --tools=rector",
+    "setup": "bash bin/setup.sh",
+    "test": "@php vendor/bin/phpunit",
+    "test:wp": "@php vendor/bin/phpunit -c phpunit.wp.xml.dist",
+    "test:install": "env LD_LIBRARY_PATH='' bash bin/install-wp-tests.sh janwpb_tests $(wp config get DB_USER) $(wp config get DB_PASSWORD) $(wp config get DB_HOST) latest",
     "createzip": "bash .github/create-zip.sh -a",
     "createzip:downloads": "@createzip -a -o ~/Downloads",
-    "update-translations": "wp i18n make-pot ./ && wp i18n update-po ./languages/animal-food-bank.pot && wp i18n make-mo ./languages/",
+    "update-translations": "wp i18n make-pot ./ && wp i18n update-po ./languages/janw-plugin-base.pot && wp i18n make-mo ./languages/",
     "bumpversion": [
       "@ci",
       "bash .github/update-version.sh"
@@ -48,6 +52,10 @@
     "phpcs": "Run phpcs on all files via ci.sh.",
     "phpstan": "Run phpstan on all files via ci.sh.",
     "phprector": "Run rector on all files via ci.sh.",
+    "setup": "Rename the boilerplate for a new project. `composer setup -- --name \"My Plugin\" --slug my-plugin --namespace \"Acme\\My\"`",
+    "test": "Run the fast PHPUnit unit suite (no WordPress, no database).",
+    "test:wp": "Run the WordPress integration suite (needs test:install first).",
+    "test:install": "Install the WordPress test library using the local site's DB credentials.",
     "ci": "Run all syntax checkers on all files via ci.sh.",
     "ci:changed": "Run all syntax checkers on changed files only via ci.sh.",
     "createzip": "Will create a zip named 'plugin-slug.zip' in the plugin folder.",
@@ -69,7 +77,9 @@
     "php-stubs/wp-cli-stubs": "^2.12",
     "wp-cli/wp-cli-bundle": "^2.12",
     "php-stubs/woocommerce-stubs": "^10.5.2",
-    "rector/rector": "^2.0.18"
+    "rector/rector": "^2.0.18",
+    "phpunit/phpunit": "^9.6",
+    "yoast/phpunit-polyfills": "^3.0"
   },
   "require": {
     "php": ">=8.2"

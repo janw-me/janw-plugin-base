@@ -10,13 +10,27 @@ parameters:
     paths:
         - .
     excludePaths:
-        - .git
-        - .github
-        # - .githooks
-        - phpstan.php
-        - languages
-        # - node_modules
-        - vendor
+        analyseAndScan:
+            - .git
+            - .github
+            # - .githooks
+            - phpstan.php
+            - languages
+            # - node_modules
+            - vendor
+            # Test bootstraps + the WordPress integration suite rely on the WP
+            # test library, which is not available to static analysis.
+            - tests/bootstrap-unit.php
+            - tests/bootstrap.php
+            - tests/wp
+            # examples/ are reference snippets to copy into app/ and adapt.
+            - examples
+        analyse:
+            # Scanned for its symbols (so the unit tests resolve) but not analysed:
+            # a fixture that defines init() would otherwise make the Singleton
+            # trait's method_exists() guard look "always true". The plain fixture
+            # (no init) stays analysed so the trait has a non-narrowed user.
+            - tests/unit/fixtures/class-singleton-fixture.php
 #    ignoreErrors:
 #        - "#^Unsafe access to private property [a-zA-Z0-9\\_\\\\]+::\\$inst through static::.$#"
 #        - '#no value type specified in iterable type array.$#'

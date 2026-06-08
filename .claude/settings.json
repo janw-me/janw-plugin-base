@@ -1,0 +1,58 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(composer ci)",
+      "Bash(composer ci:changed)",
+      "Bash(composer phpcs)",
+      "Bash(composer phpstan)",
+      "Bash(composer phpcbf)",
+      "Bash(composer phpfixer)",
+      "Bash(composer phprector)",
+      "Bash(composer test)",
+      "Bash(composer test:wp)",
+      "Bash(composer test:install)",
+      "Bash(composer validate:*)",
+      "Bash(composer install)",
+      "Bash(composer dump-autoload:*)",
+      "Bash(php -l:*)",
+      "Bash(php --version)",
+      "Bash(php vendor/bin/phpcs:*)",
+      "Bash(php vendor/bin/phpstan:*)",
+      "Bash(php vendor/bin/phpcbf:*)",
+      "Bash(php vendor/bin/php-cs-fixer:*)",
+      "Bash(php vendor/bin/phpunit:*)",
+      "Bash(vendor/bin/phpcs:*)",
+      "Bash(vendor/bin/phpstan:*)",
+      "Bash(vendor/bin/phpcbf:*)",
+      "Bash(vendor/bin/php-cs-fixer:*)",
+      "Bash(vendor/bin/phpunit:*)",
+      "Bash(bash .github/ci.sh:*)",
+      "Bash(composer --version)",
+      "Bash(wp --version)",
+      "Bash(wp config get:*)",
+      "Bash(wp core version:*)",
+      "Bash(wp option get:*)",
+      "Bash(wp i18n:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git show:*)",
+      "Bash(git ls-files:*)"
+    ],
+    "deny": []
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/format-php.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -8,42 +8,36 @@ Clone this repo in an empty directory, remove the git and start your own git.
 	rm -rf .git
 	git init
 
-Checkout the [branches](https://github.com/janw-me/janw-plugin-base/branches) for features possible needed to setup.
+See `examples/` for ready-to-copy feature patterns (settings page, AJAX, cron) and `AGENTS.md` for the project conventions.
 
 # Setup
 
-Before actual starting there are several places that need to be renamed,
-This will rename most things:
+Rename the boilerplate for your project with the bundled script (run once, from the plugin root):
 
-	mv janw-plugin-base.php your-slug.php
-	mv languages/janw-plugin-base-nl_NL.po languages/your-slug-nl_NL.po
-	find ./ -type f -not -path "./.git/*" -exec sed -i 's/janw-plugin-base/your-slug/g' {} \;
-	find ./ -type f -not -path "./.git/*" -exec sed -i 's/JANW_PLUGIN_BASE/YOUR_SLUG/g' {} \;
-	find ./ -type f -not -path "./.git/*" -exec sed -i 's/Janw\\Plugin_Base/Your\\Slug/g' {} \;
+	composer setup -- --name "My Plugin" --slug my-plugin --namespace "Acme\\My"
 
-- `composer.json`
-	- name (the user should probably change)
-  	- description
-	- packages (yes please double check)
-- `readme.txt`
-	- line 1: with plugin title
-- `.phpcs.xml.dist`
-	- prefixes
-	- text_domain
-- `janw-plugin-base.php`
-    - rename file (should have been done automatically)
-    - Check all _plugin headers_
-- Plugin wide seach-replace
-	- Constants: _JANW_PLUGIN_BASE_
-	- Namespace & Package: _Janw\Plugin_Base_
-- clear this section and the install section.
+	# or call it directly:
+	bin/setup.sh --name "My Plugin" --slug my-plugin --namespace "Acme\\My"
+
+This replaces every placeholder (slug, constants, namespace, function/hook prefixes, plugin name),
+renames the main file and the language file, and then removes itself. Run `bin/setup.sh --help` to
+see the optional flags (`--prefix`, `--short-prefix`, `--const-prefix`, `--description`).
+
+Afterwards:
+
+- Review `composer.json` — the `janw-me` vendor name and the dev `packages` (double-check them).
+- Review the plugin header in `<your-slug>.php` and the title line in `readme.txt`.
+- Remove this _Installing_ / _Setup_ section.
+- Run `composer install && composer ci && composer test`.
+
+See `AGENTS.md` for the project conventions and day-to-day commands.
 
 ## Change php version
 Default is set to 8.2, to update it change:
 
-- `janw-base-plugin.php`
+- `janw-plugin-base.php`
 - `composer.json` (2 places)
-- `.phpcs.xml.dist`
+- `phpcs.xml.dist`
 - `readme.txt`
 - `phpstan.neon.dist`
 - `phpcs-fixer.dist.php`
@@ -51,22 +45,32 @@ Default is set to 8.2, to update it change:
 ## Change WP version
 The default is 6.6, to update is change:
 
-- `janw-base-plugin.php`
-- `.phpcs.xml.dist`
+- `janw-plugin-base.php`
+- `phpcs.xml.dist`
 - `readme.txt`
 
 # Bundled commands
 
-Inside composer several extra tools have been added:
+Inside composer several extra tools have been added. See `AGENTS.md` for the full development loop.
 
-Code formatting:
-- `composer run phpcbf`                  Run the phpcbf, an autoformatter.
-- `composer run phpcs`                   Run phpcs, Checks style and syntax agianst theh WordPress coding stadard.
-- `composer run lint`                    Run php linter, Checks syntax.
-- `composer run phpstan`                 Run phpstan, Checks styntax, docblock, non existing functions/classes.
-- `composer run ci`                      Run all the above syntax checkers at once.
+Code quality (the toolchain is `rector → php-cs-fixer → phpcbf → phpcs → phpstan`):
+- `composer ci`            Run the whole toolchain on every file.
+- `composer ci:changed`    Run the whole toolchain on changed files only.
+- `composer phpcbf`        Run phpcbf, the WordPress-standard autoformatter.
+- `composer phpfixer`      Run php-cs-fixer, the secondary autoformatter.
+- `composer phpcs`         Run phpcs, checks style against the WordPress Coding Standard.
+- `composer phpstan`       Run phpstan, static analysis (types, docblocks, unknown symbols).
+- `composer phprector`     Run rector, automated refactors.
 
-Creating plugin zip:
-- `composer run createzip`               Will create a zip named 'plugin-slug.zip' in the plugin folder.
-- `composer run createzip-in-downloads`  Will create a zip named 'plugin-slug-0.1.0.zip' in the plugin folder.
-- `composer run createzip-with-version`  Will create a zip named 'plugin-slug-0.1.0.zip' in the Downloads folder.
+Tests:
+- `composer test`          Fast PHPUnit unit suite (no WordPress, no database).
+- `composer test:install`  Install the WordPress test library (run once before `test:wp`).
+- `composer test:wp`       WordPress integration suite (needs `test:install`).
+
+Creating a plugin zip:
+- `composer createzip`            Create `plugin-slug.zip` in the plugin folder.
+- `composer createzip:downloads`  Create `plugin-slug-0.1.0.zip` in `~/Downloads`.
+
+Versioning & release:
+- `composer bumpversion:patch|minor|major`  Run CI, then bump the version everywhere.
+- `composer publish-version`                Commit, tag, and push the new version.

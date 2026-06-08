@@ -24,6 +24,10 @@ return RectorConfig::configure()
 	->withSkipPath( __DIR__ . '/.github' )
 	->withSkipPath( __DIR__ . '/languages' )
 	->withSkipPath( __DIR__ . '/vendor' )
+	// Don't auto-refactor test code: rector strips the @var tags that WPCS requires.
+	->withSkipPath( __DIR__ . '/tests' )
+	// examples/ are reference snippets, kept verbatim for copying.
+	->withSkipPath( __DIR__ . '/examples' )
 
 	->withPhpSets( php82: true )
 	->withPreparedSets(

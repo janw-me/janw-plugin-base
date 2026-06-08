@@ -9,6 +9,9 @@ if ( is_dir( __DIR__ . '/app' ) ) {
 if ( is_dir( __DIR__ . '/templates' ) ) {
 	$finder->in( __DIR__ . '/templates' );
 }
+if ( is_dir( __DIR__ . '/examples' ) ) {
+	$finder->in( __DIR__ . '/examples' );
+}
 
 $config = new Config();
 $config

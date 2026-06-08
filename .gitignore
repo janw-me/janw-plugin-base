@@ -1,8 +1,10 @@
 .DS_Store
+.claude/settings.local.json
 phpcs.xml
 phpstan.neon
 phpunit.xml
 .phpunit.result.cache
+.phpunit.cache/
 Thumbs.db
 wp-cli.local.yml
 node_modules/

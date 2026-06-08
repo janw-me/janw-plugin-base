@@ -41,13 +41,20 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
 		<exclude-pattern>/janw-plugin-base/templates/</exclude-pattern>
 	</rule>
+	<!-- PHPUnit derives the test class from the file name, so test files are named
+	     after their class (Singleton_Test.php) instead of the class-*.php convention. -->
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>/janw-plugin-base/tests/*</exclude-pattern>
+	</rule>
 	<rule ref="Squiz.Commenting.FileComment.Missing">
 		<exclude-pattern>/janw-plugin-base/app/</exclude-pattern>
 		<exclude-pattern>/janw-plugin-base/tests/</exclude-pattern>
+		<exclude-pattern>/janw-plugin-base/examples/</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Commenting.DocComment.MissingShort">
 		<exclude-pattern>/janw-plugin-base/app/</exclude-pattern>
 		<exclude-pattern>/janw-plugin-base/tests/</exclude-pattern>
+		<exclude-pattern>/janw-plugin-base/examples/</exclude-pattern>
 	</rule>
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
