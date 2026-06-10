@@ -11,6 +11,7 @@
     }
   ],
   "scripts": {
+    "post-install-cmd": "cp bin/hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit",
     "ci": "bash .github/ci.sh",
     "ci:changed": "bash .github/ci.sh --changed",
     "phpfixer": "bash .github/ci.sh --tools=php-cs-fixer",
