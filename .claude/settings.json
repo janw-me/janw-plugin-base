@@ -9,22 +9,19 @@
       "Bash(grep *)",
       "Bash(find *)",
       "Bash(ls *)",
+      "Bash(awk *)",
+      "Bash(sed *)",
       "Bash(wp *)",
-      "Bash(php -l:*)",
       "Bash(php --version)",
-      "Bash(php vendor/bin/phpcs:*)",
-      "Bash(php vendor/bin/phpstan:*)",
-      "Bash(php vendor/bin/phpcbf:*)",
-      "Bash(php vendor/bin/php-cs-fixer:*)",
-      "Bash(php vendor/bin/phpunit:*)",
-      "Bash(vendor/bin/phpcs:*)",
-      "Bash(vendor/bin/phpstan:*)",
-      "Bash(vendor/bin/phpcbf:*)",
-      "Bash(vendor/bin/php-cs-fixer:*)",
-      "Bash(vendor/bin/phpunit:*)",
-      "Bash(bash .github/ci.sh:*)"
+      "Bash(echo \"exit: $?\")"
     ],
-    "deny": []
+    "deny": [
+      "Bash(bash .github/ci.sh*)",
+      "Bash(php vendor/bin/*)",
+      "Bash(vendor/bin/*)",
+      "Bash(php -l:*)",
+      "Bash(wp @live *)"
+    ]
   },
   "hooks": {
     "PostToolUse": [
