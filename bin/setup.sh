@@ -145,6 +145,13 @@ if [[ -n "$DESCRIPTION" ]]; then
 	replace_token "\"description\": \"Replace\"" "\"description\": \"${DESCRIPTION}\""
 fi
 
+# WordPress.NamingConventions.PrefixAllGlobals also checks that the PHP namespace
+NAMESPACE_PREFIX="$(printf '%s' "$NAMESPACE" | tr '[:upper:]' '[:lower:]' | tr -c '[:alnum:]' '_' | sed -e 's/_\{2,\}/_/g' -e 's/^_//' -e 's/_$//')"
+NAMESPACE_SHORT_PREFIX="${NAMESPACE_PREFIX//_/}"
+if [[ -f phpcs.xml.dist && "$NAMESPACE_PREFIX" != "$PREFIX" && "$NAMESPACE_PREFIX" != "$SHORT_PREFIX" ]]; then
+	sed_inplace "s|<element value=\"${SHORT_PREFIX}\"/>|<element value=\"${SHORT_PREFIX}\"/>\n\t\t\t\t<element value=\"${NAMESPACE_PREFIX}\"/>\n\t\t\t\t<element value=\"${NAMESPACE_SHORT_PREFIX}\"/>|" phpcs.xml.dist
+fi
+
 # Rename the main plugin file and the language file.
 mv "janw-plugin-base.php" "${SLUG}.php"
 if [[ -f "languages/janw-plugin-base-nl_NL.po" ]]; then
